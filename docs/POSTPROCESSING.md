@@ -8,8 +8,12 @@ Both passes create a child job in the existing queue. The parent GLB is read-onl
 
 - `detail_faces`: default 1,000,000; an explicit working triangle budget before repair, or null for all source detail.
 - `remove_small_components`: false by default. True explicitly retains only the largest component before repair.
+- `method`: `volume` (default) reconstructs the voxel volume; `surface` retains classic MeshFix cleanup. Saved jobs without a method keep the historical surface algorithm.
+- `voxel_resolution`: 128, 256 (default), or 384 cells along the longest dimension. Used by volume reconstruction.
 
-Native mesh cleanup, boundary filling and intersection cleanup use MeshFix through its in-process Python binding. The output includes GLB with transferred vertex color, STL and PLY. The report measures boundary/nonmanifold edges, connected components, consistent winding, watertightness and positive-volume status. `closure_verified` requires a watertight positive-volume result. A failed closure remains visible as such; completion alone is not a printable-solid certificate. The algorithm can change small features. Inspect walls, supports, scale and slicer settings separately.
+Volume reconstruction voxelizes the working surface, closes one-cell gaps with a full 3D neighbourhood, fills enclosed space and extracts a new surface. Its report records the pitch and resolution. Details below the cell size can be smoothed or lost; nearby parts can merge. This is an explicit geometry approximation. For a 100mm longest dimension at256 cells, nominal cell size is about0.39mm before any preprocessing budget loss.
+
+Classic native mesh cleanup, boundary filling and intersection cleanup use MeshFix through its in-process Python binding. It can be slow on severely nonmanifold surfaces. The output includes GLB with transferred vertex color, STL and PLY. The report measures boundary/nonmanifold edges, connected components, consistent winding, watertightness and positive-volume status. `closure_verified` requires a watertight positive-volume result. A failed closure remains visible as such; completion alone is not a printable-solid certificate. Both algorithms can change small features. Inspect walls, supports, scale and slicer settings separately.
 
 ## Games
 

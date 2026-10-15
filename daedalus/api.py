@@ -43,6 +43,8 @@ class UpscaleInput(BaseModel):
     seed:int=Field(default=42,ge=0,le=2**63-1)
 
 class RepairInput(BaseModel):
+    method:Literal['volume','surface']='volume'
+    voxel_resolution:Literal[128,256,384]=256
     detail_faces:int|None=Field(default=1000000,ge=1000)
     remove_small_components:bool=False
 

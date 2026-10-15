@@ -8,7 +8,7 @@ import time
 import fast_simplification
 import numpy as np
 from PIL import Image
-from scipy.ndimage import distance_transform_edt
+from scipy.ndimage import distance_transform_edt,binary_closing,binary_fill_holes
 from scipy.spatial import cKDTree
 import trimesh
 
@@ -132,18 +132,35 @@ def run(spec,progress):
     progress('simplifying_mesh',.12)
     mesh=simplify(mesh,count)
     if spec['kind']=='repair':
-        import pymeshfix
         before=topology(mesh)
         progress('repairing_mesh',.25)
-        fixer=pymeshfix.PyTMesh(False)
-        fixer.load_array(np.asarray(mesh.vertices,dtype=np.float64),np.asarray(mesh.faces,dtype=np.int32))
-        if spec.get('remove_small_components',False):
-            fixer.remove_smallest_components()
-        filled=fixer.fill_small_boundaries()
-        fixer.clean(max_iters=10,inner_loops=3)
-        filled+=fixer.fill_small_boundaries()
-        vertices,faces=fixer.return_arrays()
-        mesh=trimesh.Trimesh(vertices,faces,process=True)
+        method=spec.get('method','surface')
+        if method=='volume':
+            if spec.get('remove_small_components',False):
+                vertices_labels=trimesh.graph.connected_component_labels(mesh.edges_unique,node_count=len(mesh.vertices))
+                labels=vertices_labels[mesh.faces[:,0]]
+                mesh.update_faces(labels==np.bincount(labels).argmax())
+                mesh.remove_unreferenced_vertices()
+            pitch=float(mesh.extents.max())/spec['voxel_resolution']
+            grid=mesh.voxelized(pitch)
+            solid=binary_fill_holes(binary_closing(np.pad(grid.matrix,2),structure=np.ones((3,3,3),dtype=bool),iterations=1))
+            mesh=trimesh.voxel.ops.matrix_to_marching_cubes(solid)
+            mesh.vertices-=2
+            mesh.apply_transform(grid.transform)
+            repair_info={'method':'voxel volume reconstruction','voxel_resolution':spec['voxel_resolution'],
+                         'voxel_pitch_normalized':pitch,'closing_voxels':1}
+        else:
+            import pymeshfix
+            fixer=pymeshfix.PyTMesh(False)
+            fixer.load_array(np.asarray(mesh.vertices,dtype=np.float64),np.asarray(mesh.faces,dtype=np.int32))
+            if spec.get('remove_small_components',False):
+                fixer.remove_smallest_components()
+            filled=fixer.fill_small_boundaries()
+            fixer.clean(max_iters=10,inner_loops=3)
+            filled+=fixer.fill_small_boundaries()
+            vertices,faces=fixer.return_arrays()
+            mesh=trimesh.Trimesh(vertices,faces,process=True)
+            repair_info={'method':'mesh cleanup, boundary fill and intersection removal','boundaries_patched':int(filled)}
         mesh.update_faces(mesh.unique_faces() & mesh.nondegenerate_faces())
         if not len(mesh.faces):
             raise ValueError('La reparación no ha conservado una superficie. Prueba con mayor detalle.')
@@ -152,9 +169,9 @@ def run(spec,progress):
         colors=appearance.sample(mesh.vertices)
         mesh.visual=trimesh.visual.ColorVisuals(mesh=mesh,
             vertex_colors=np.clip(colors[:,[0,1,2,5]]*255,0,255).astype(np.uint8))
-        processing={'method':'mesh cleanup, boundary fill and intersection removal','before':before,'after':after,
-                    'boundaries_patched':int(filled),'closure_verified':bool(after['positive_volume'] and after['watertight']),
-                    'note':'Consulta el estado de cierre del informe; grosor, soportes y ajustes de impresión se revisan en el laminador.'}
+        processing={**repair_info,'before':before,'after':after,
+                    'closure_verified':bool(after['positive_volume'] and after['watertight']),
+                    'note':'Consulta el estado de cierre. La reconstrucción puede suavizar detalles o unir piezas próximas; grosor, soportes y ajustes se revisan en el laminador.'}
     else:
         mesh.fix_normals(multibody=True)
         after=topology(mesh)

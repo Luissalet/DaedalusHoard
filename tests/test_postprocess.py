@@ -26,6 +26,10 @@ def test_repair_closes_boundaries_preserves_parts_and_original(tmp_path):
     assert result['processing']['after']['boundary_edges']==0
     assert result['processing']['after']['components']==2
     assert hashlib.sha256(path.read_bytes()).hexdigest()==before
+    largest=tmp_path/'largest';largest.mkdir()
+    kept=run({'kind':'repair','mesh':str(path),'source_folder':str(tmp_path),'output_dir':str(largest),
+        'detail_faces':None,'method':'volume','voxel_resolution':128,'remove_small_components':True},lambda *args:None)
+    assert kept['processing']['after']['components']==1
     repaired=trimesh.load(output/'model.glb',force='mesh',process=True)
     assert repaired.is_watertight and repaired.is_volume
     assert result['execution']=='CPU' and result['gpu_leases']==0
@@ -63,9 +67,11 @@ def test_processing_mcp_api_versions_and_no_gpu_reservation(tmp_path,monkeypatch
         monkeypatch.setattr('daedalus.jobs.lease',forbidden_lease)
         token=(tmp_path/'mcp-token').read_text().strip()
         response=client.post('/api/agent/call',headers={'Authorization':'Bearer '+token},json={
-            'name':'model_repair','arguments':{'job_id':original['id'],'detail_faces':None}})
+            'name':'model_repair','arguments':{'job_id':original['id'],'detail_faces':None,'voxel_resolution':128}})
         repaired=wait_job(client,response.json()['result']['id'],timeout=30)
         assert repaired['kind']=='repair' and repaired['parent_id']==original['id']
+        assert repaired['result']['processing']['method']=='voxel volume reconstruction'
+        assert repaired['result']['processing']['closure_verified']
         response=client.post('/api/jobs/'+repaired['id']+'/optimize',json={'target_faces':100,'texture_size':512})
         game=wait_job(client,response.json()['id'],timeout=30)
         assert game['kind']=='optimize' and game['parent_id']==repaired['id']
@@ -90,7 +96,7 @@ def test_discarded_materials_stay_discarded_through_processing_chain(tmp_path):
             json={'transfer_materials':False}).json()['id'])
         manager=client.app.state.manager;manager.runner=manager.run_native
         parent=refined
-        for kind,params in [('repair',{'detail_faces':None}),
+        for kind,params in [('repair',{'detail_faces':None,'method':'surface'}),
                             ('optimize',{'target_faces':100,'texture_size':512}),
                             ('optimize',{'target_faces':100,'texture_size':512})]:
             parent=wait_job(client,client.post('/api/jobs/'+parent['id']+'/'+kind,json=params).json()['id'],timeout=30)
@@ -98,3 +104,21 @@ def test_discarded_materials_stay_discarded_through_processing_chain(tmp_path):
         pixels=np.asarray(Image.open(tmp_path/'jobs'/parent['id']/'base-color.png'))
         assert np.allclose(pixels[:,:,:3],102,atol=1)
         assert parent['result']['processing']['material_method']=='nearest source vertex color'
+
+
+def test_volume_reconstruction_preserves_large_hole_parts_and_coordinate_frame(tmp_path):
+    torus=trimesh.creation.torus(major_radius=.6,minor_radius=.2)
+    torus.update_faces(np.arange(len(torus.faces))<len(torus.faces)-3)
+    part=trimesh.creation.icosphere(subdivisions=1,radius=.1);part.apply_translation([2,0,0])
+    source=trimesh.util.concatenate([torus,part]);path=tmp_path/'source.glb';source.export(path)
+    before=hashlib.sha256(path.read_bytes()).hexdigest();output=tmp_path/'volume';output.mkdir()
+    result=run({'kind':'repair','mesh':str(path),'source_folder':str(tmp_path),'output_dir':str(output),
+        'detail_faces':None,'method':'volume','voxel_resolution':128},lambda *args:None)
+    model=trimesh.load(output/'model.glb',force='mesh',process=True)
+    assert model.is_watertight and model.is_volume and model.is_winding_consistent
+    assert len(model.split())==2
+    # Torus plus sphere retain one tunnel: Euler0 + Euler2.
+    assert model.euler_number==2
+    pitch=result['processing']['voxel_pitch_normalized']
+    assert np.max(np.abs(model.bounds-source.bounds))<3*pitch
+    assert hashlib.sha256(path.read_bytes()).hexdigest()==before
