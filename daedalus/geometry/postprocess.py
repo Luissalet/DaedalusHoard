@@ -154,7 +154,7 @@ def run(spec,progress):
             vertex_colors=np.clip(colors[:,[0,1,2,5]]*255,0,255).astype(np.uint8))
         processing={'method':'mesh cleanup, boundary fill and intersection removal','before':before,'after':after,
                     'boundaries_patched':int(filled),'closure_verified':bool(after['positive_volume'] and after['watertight']),
-                    'note':'Cierre topológico comprobado; grosor, soportes y ajustes de impresión se revisan en el laminador.'}
+                    'note':'Consulta el estado de cierre del informe; grosor, soportes y ajustes de impresión se revisan en el laminador.'}
     else:
         mesh.fix_normals(multibody=True)
         after=topology(mesh)
