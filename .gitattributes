@@ -2,3 +2,5 @@
 client/vendor/hoard-theme.css -text -whitespace
 client/vendor/fonts/OFL-*.txt -text -whitespace
 licenses/UltraShape-WEIGHTS-MODELCARD.md -text -whitespace
+licenses/MeshFix-0.17.1-LICENSE.txt -text -whitespace
+licenses/xatlas-python-LICENSE.txt -text -whitespace
