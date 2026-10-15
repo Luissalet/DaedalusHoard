@@ -1,0 +1,4 @@
+# Retain exact bytes of the shared generated theme and upstream notices.
+client/vendor/hoard-theme.css -text -whitespace
+client/vendor/fonts/OFL-*.txt -text -whitespace
+licenses/UltraShape-WEIGHTS-MODELCARD.md -text -whitespace
