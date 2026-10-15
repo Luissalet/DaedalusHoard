@@ -24,7 +24,7 @@ El tamaño no se deduce de una imagen. El lado mayor indicado al exportar se esc
 
 ## API y MCP
 
-`python -m daedalus` inicia la aplicación. `python -m daedalus.mcp` expone 11 herramientas por stdio contra esa misma API: importar imagen, generar, refinar, listar/leer/cancelar trabajos, consultar versiones, renombrar, exportar, consultar motores y configurar su carpeta. Generar y refinar devuelven un ID de trabajo asíncrono; `job_get` lee el estado real. Configuración MCP en `faustus-plugin.json`; `DAEDALUS_URL` selecciona la instancia y `DAEDALUS_TOKEN_FILE` su token local. Los agentes y la interfaz utilizan la misma cola y los mismos datos.
+`python -m daedalus` inicia la aplicación. `python -m daedalus.mcp` expone 12 herramientas por stdio contra esa misma API: importar imagen, generar, ampliar a 1024, refinar, listar/leer/cancelar trabajos, consultar versiones, renombrar, exportar, consultar motores y configurar su carpeta. Generar, ampliar y refinar devuelven un ID de trabajo asíncrono; `job_get` lee el estado real. Configuración MCP en `faustus-plugin.json`; `DAEDALUS_URL` selecciona la instancia y `DAEDALUS_TOKEN_FILE` su token local. Los agentes y la interfaz utilizan la misma cola y los mismos datos.
 
 ## Verificación
 
@@ -33,3 +33,7 @@ Pruebas CPU: `python -m pytest`. Cubren conservación de versiones, unidades exp
 Los pesos de Ultra figuran como Apache-2.0, pero declaran una base Hunyuan3D-2.1 y el repositorio de referencia tiene restricciones geográficas. Esa discrepancia está conservada en `docs/ULTRA-PROVENANCE.md`; no se afirma permiso de redistribución sin restricciones.
 
 Código GPL-3.0; los pesos y componentes tienen sus propias licencias. Véase `THIRD_PARTY.md` antes de redistribuirlos.
+
+La ampliación opcional a 1024 reutiliza el latente de una generación original de 512 conservada y ejecuta la segunda etapa entrenada de TRELLIS.2, seguida de materiales nuevos. No vuelve a sortear la estructura de 512 ni sustituye el original. API `POST /api/jobs/{id}/upscale`, MCP `model_upscale`.
+
+El visor conserva una vista ligera por defecto. «Vista completa» carga la geometría íntegra, con material uniforme para comparar detalle sin la simplificación de la vista previa; «Ver color» muestra su color de vértices. Los trabajos devuelven enlaces directos `viewer_url`, `comparison_url` y `full_comparison_url`. La primera carga completa puede tardar y utiliza más memoria gráfica.

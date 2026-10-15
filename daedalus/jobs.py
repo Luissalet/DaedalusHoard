@@ -65,12 +65,20 @@ class JobManager:
                         raise ValueError('La versión de origen ya no está disponible.')
                     spec['mesh']=str(self.config.jobs/parent['id']/'model.glb')
                     base=parent
-                    while base.get('parent_id'):
+                    while base.get('parent_id') and base['kind']=='refine':
                         base=self.store.job(base['parent_id'])
                     spec['material_source']=str(self.config.jobs/base['id'])
                     spec['image']=str(self.config.jobs/base['id']/'preprocessed.png')
                     if spec.get('backend')=='ultra' and (self.config.jobs/base['id']/'input.png').is_file():
                         spec['image']=str(self.config.jobs/base['id']/'input.png')
+                elif job['kind']=='upscale':
+                    parent=self.store.job(job['parent_id'])
+                    if not parent or parent['status']!='complete':
+                        raise ValueError('La generación de origen ya no está disponible.')
+                    spec['source_latent']=str(self.config.jobs/parent['id']/'latents.pt')
+                    prepared=self.config.jobs/parent['id']/'input.png'
+                    if prepared.is_file():
+                        spec['image']=str(prepared)
                 def on_event(event):
                     with self.lock:
                         current=self.store.job(identity)

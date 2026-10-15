@@ -40,6 +40,11 @@ def restore_refinement_pose(folder,alignment):
     trimesh.Trimesh(vertices=vertices,faces=faces,process=False).export(folder/'refined.glb')
 
 def prepare_input(spec):
+    if spec['kind']=='upscale':
+        output=Path(spec['output_dir'])/'input.png'
+        shutil.copy2(spec['image'],output)
+        spec['image']=str(output)
+        return
     if spec['kind']!='generate':
         return
     import numpy as np
@@ -132,11 +137,12 @@ def publish(spec):
             'stl':'model.stl','ply':'model.ply','color':'base-color.png','material':'metallic-roughness.png',
             'geometry':'geometry.npz','pbr':'pbr-voxels.npz','reference':'preprocessed.png'}.items() if (folder/name).exists()}
     return {'files':files,'metrics':metrics,'seed':spec.get('seed',42),'resolution':spec.get('resolution',512),
-            'kind':spec['kind'],'materials':'transferred' if spec['kind']=='refine' and spec.get('transfer_materials',True) else 'generated' if spec['kind']=='generate' else 'none',
+            'kind':spec['kind'],'materials':'transferred' if spec['kind']=='refine' and spec.get('transfer_materials',True) else 'generated' if spec['kind'] in {'generate','upscale'} else 'none',
             'engine_seconds':result['seconds_total'],'memory':result.get('memory',[]),
             'block_calls':result.get('block_calls',{}),'refiner_tokens':spec.get('tokens'),
             'refiner_backend':spec.get('backend','detail') if spec['kind']=='refine' else None,
-            'alignment_degrees':spec.get('alignment_degrees',0),'refiner_steps':spec.get('steps',50) if spec['kind']=='refine' else None}
+            'alignment_degrees':spec.get('alignment_degrees',0),'refiner_steps':spec.get('steps',50) if spec['kind']=='refine' else None,
+            'upscale_source':result.get('upscale_source')}
 
 def main():
     spec=json.loads(Path(sys.argv[1]).read_text(encoding='utf-8'))
@@ -146,7 +152,7 @@ def main():
         progress('preparing_image',.005)
         prepare_input(spec)
         progress('loading_models',.01)
-        if spec['kind']=='generate':
+        if spec['kind'] in {'generate','upscale'}:
             from .geometry import generation as engine
         elif spec.get('backend')=='ultra':
             from .geometry import ultra_refinement as engine

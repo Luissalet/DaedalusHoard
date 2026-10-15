@@ -2,6 +2,7 @@
 import argparse
 from collections import Counter
 import gc
+import hashlib
 import json
 from pathlib import Path
 import sys
@@ -211,14 +212,23 @@ def run(spec):
             shape = SparseTensor(saved['shape'].to('cuda:0'), saved['coords'].to('cuda:0'))
             texture = SparseTensor(saved['texture'].to('cuda:0'), saved['coords'].to('cuda:0'))
         else:
-            noise = torch.randn((1, 8, 16, 16, 16), device='cuda:0')
-            structure = sample(model.structure_model, noise, conditions[512], config['sparse_structure_sampler']['params'], 'structure')
-            occupancy = shape_vae.decode_structure(structure.to(device='cuda:1', dtype=DTYPE)) > 0
-            occupancy = F.max_pool3d(occupancy.float(), 2, 2) > 0.5
-            coords = torch.argwhere(occupancy)[:, [0, 2, 3, 4]].int().to('cuda:0')
-            event('structure_decoded', occupied_voxels=len(coords))
-            shape_noise = SparseTensor(torch.randn((len(coords), 32), device='cuda:0'), coords)
-            shape = sample(model.img2shape_512, shape_noise, conditions[512], config['shape_slat_sampler']['params'], 'shape_512')
+            if spec.get('source_latent'):
+                source_path=Path(spec['source_latent'])
+                saved=torch.load(source_path,map_location='cpu',weights_only=True)
+                coords=saved['coords'].to('cuda:0')
+                shape=SparseTensor(saved['shape'].to('cuda:0'),coords)
+                with source_path.open('rb') as stream:
+                    source_digest=hashlib.file_digest(stream,'sha256').hexdigest()
+                event('source_latent_reused',path=str(source_path),sha256=source_digest,tokens=len(coords))
+            else:
+                noise = torch.randn((1, 8, 16, 16, 16), device='cuda:0')
+                structure = sample(model.structure_model, noise, conditions[512], config['sparse_structure_sampler']['params'], 'structure')
+                occupancy = shape_vae.decode_structure(structure.to(device='cuda:1', dtype=DTYPE)) > 0
+                occupancy = F.max_pool3d(occupancy.float(), 2, 2) > 0.5
+                coords = torch.argwhere(occupancy)[:, [0, 2, 3, 4]].int().to('cuda:0')
+                event('structure_decoded', occupied_voxels=len(coords))
+                shape_noise = SparseTensor(torch.randn((len(coords), 32), device='cuda:0'), coords)
+                shape = sample(model.img2shape_512, shape_noise, conditions[512], config['shape_slat_sampler']['params'], 'shape_512')
             if args.resolution == 1024:
                 physical_shape = denormalize(shape, config['shape_slat_normalization'])
                 high_coords = shape_vae.upsample_shape(move(physical_shape, torch.device('cuda:1')).to(dtype=DTYPE), 4)
@@ -226,7 +236,9 @@ def run(spec):
                 coords = quant.unique(dim=0).to('cuda:0')
                 event('cascade_upsampled', occupied_voxels=len(coords))
                 shape_noise = SparseTensor(torch.randn((len(coords), 32), device='cuda:0'), coords)
-                shape = sample(model.img2shape, shape_noise, conditions[1024], config['shape_slat_sampler']['params'], 'shape_1024')
+                shape_params=dict(config['shape_slat_sampler']['params'])
+                if spec.get('source_latent'):shape_params['steps']=int(spec.get('steps',shape_params['steps']))
+                shape = sample(model.img2shape, shape_noise, conditions[1024], shape_params, 'shape_1024')
             tex_noise = SparseTensor(torch.randn((len(coords), 32), device='cuda:0'), coords)
             texture = sample(model.shape2txt, tex_noise, conditions[1024], config['tex_slat_sampler']['params'], 'texture', concat_cond=shape)
             torch.save({'shape': shape.feats.cpu(), 'texture': texture.feats.cpu(), 'coords': coords.cpu()}, out / 'latents.pt')
@@ -272,6 +284,7 @@ def run(spec):
         assert len(reloaded.vertices) > 0 and len(reloaded.faces) > 0
         assert np.isfinite(reloaded.vertices).all()
         summary = {'resolution': args.resolution, 'seed': args.seed, 'seconds_total': time.perf_counter() - START,
+                   'upscale_source':{'latent_sha256':source_digest,'path':str(source_path)} if spec.get('source_latent') else None,
                    'vertices': len(mesh.vertices), 'faces': len(mesh.faces), 'watertight': bool(mesh.is_watertight),
                    'memory': memory(), 'block_calls': dict(CALLS), 'events': EVENTS,
                    'export': 'GLB/PLY vertex colors, STL geometry; six PBR voxel channels in NPZ',

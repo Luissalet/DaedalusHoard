@@ -38,16 +38,22 @@ class RefineInput(BaseModel):
     transfer_materials:bool=True
     seed:int=Field(default=42,ge=0,le=2**63-1)
 
+class UpscaleInput(BaseModel):
+    steps:int=Field(default=12,ge=1)
+    seed:int=Field(default=42,ge=0,le=2**63-1)
+
 def public_job(job):
     if not job:
         raise HTTPException(404,'No se ha encontrado ese modelo.')
     job=dict(job)
     job['viewer_url']=f'/?job={job["id"]}'
     job['comparison_url']=f'/?job={job["id"]}&compare=1' if job.get('parent_id') else None
+    job['full_comparison_url']=job['comparison_url']+'&full=1' if job['comparison_url'] else None
     job['reference_url']=f'/api/images/{job["image_id"]}/file'
     if job['result']:
         result=dict(job['result'])
         result['urls']={key:f'/api/jobs/{job["id"]}/files/{name}' for key,name in result.get('files',{}).items()}
+        result['urls']['full_clay']=f'/api/jobs/{job["id"]}/clay-full'
         job['result']=result
     return job
 
@@ -123,6 +129,20 @@ def create_app(data_dir=None,runner=None):
         app.state.manager.enqueue(job['id'])
         return public_job(job)
 
+    def submit_upscale(identity,body):
+        parent=store.job(identity)
+        if not parent or parent['status']!='complete' or parent['kind']!='generate' or parent['params'].get('resolution')!=512:
+            raise HTTPException(409,'Elige una generación original de 512 terminada para ampliarla.')
+        if not (config.jobs/identity/'latents.pt').is_file():
+            raise HTTPException(409,'Esta generación no conserva los datos internos necesarios para ampliarla.')
+        request=UpscaleInput.model_validate(body)
+        if runner is None and not config.model_status()['generator']['ready']:
+            raise HTTPException(409,'No se encuentran todos los pesos de TRELLIS.2.')
+        job=store.create('upscale',parent['image_id'],parent['title'],
+                         {**request.model_dump(),'resolution':1024},parent_id=identity)
+        app.state.manager.enqueue(job['id'])
+        return public_job(job)
+
     @app.get('/api/health')
     def health():
         return {'ok':True,'service':'daedalus-hoard','version':'0.1.0'}
@@ -173,6 +193,10 @@ def create_app(data_dir=None,runner=None):
     def refine(identity:str,body:RefineInput):
         return submit_refinement(identity,body.model_dump())
 
+    @app.post('/api/jobs/{identity}/upscale')
+    def upscale(identity:str,body:UpscaleInput):
+        return submit_upscale(identity,body.model_dump())
+
     @app.post('/api/jobs/{identity}/cancel')
     def cancel(identity:str):
         return public_job(app.state.manager.cancel(identity))
@@ -191,6 +215,24 @@ def create_app(data_dir=None,runner=None):
         if not job or job['status']!='complete' or name not in job['result']['files'].values():
             raise HTTPException(404,'Archivo no encontrado.')
         return FileResponse(config.jobs/identity/name)
+
+    @app.get('/api/jobs/{identity}/clay-full')
+    def full_clay(identity:str):
+        job=store.job(identity)
+        if not job or job['status']!='complete':
+            raise HTTPException(409,'Modelo no disponible.')
+        import trimesh
+        folder=config.jobs/identity
+        target=folder/'model-clay-full.glb'
+        with FileLock(str(folder/'clay-full.lock')):
+            if not target.exists():
+                mesh=trimesh.load(folder/job['result']['files']['full_glb'],force='mesh',process=False)
+                mesh.visual=trimesh.visual.TextureVisuals(material=trimesh.visual.material.PBRMaterial(
+                    baseColorFactor=[60,65,75,255],roughnessFactor=.8,metallicFactor=0,doubleSided=True))
+                temporary=folder/'model-clay-full.tmp'
+                temporary.write_bytes(mesh.export(file_type='glb'))
+                temporary.replace(target)
+        return FileResponse(target,media_type='model/gltf-binary')
 
     def export_file(identity,format,size_mm=100,full=False):
         job=store.job(identity)
@@ -247,6 +289,9 @@ def create_app(data_dir=None,runner=None):
         if name=='model_refine':
             identity=args.pop('job_id')
             return submit_refinement(identity,args)
+        if name=='model_upscale':
+            identity=args.pop('job_id')
+            return submit_upscale(identity,args)
         if name=='image_import':
             path=Path(args['path']).expanduser().resolve()
             if not path.is_file():
