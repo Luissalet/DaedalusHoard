@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "id": "daedalus",
+  "name": "Daedalus's Hoard",
+  "purpose": "Generate local 3D models from images across four GPUs, optionally refine a separate version, compare geometry and export explicitly scaled GLB, STL or PLY files.",
+  "capabilities": ["image-to-3d", "four-gpu-generation", "3d-refinement", "model-versions", "3d-viewer", "pbr-materials", "glb-export", "stl-export", "ply-export", "scaled-export", "job-cancellation"],
+  "placeholders": ["DAEDALUS_DIR", "APP_URL", "TOKEN_FILE", "PYTHON"],
+  "defaults": {"APP_URL":"http://127.0.0.1:8830", "TOKEN_FILE":"{DAEDALUS_DIR}/data/mcp-token", "PYTHON":"D:/LocalAI/HoardStorage/daedalus-runtime/Scripts/python.exe"},
+  "app": {
+    "url_default":"http://127.0.0.1:8830", "ui_url":"{APP_URL}",
+    "health":{"path":"/api/health", "expect":{"service":"daedalus-hoard"}},
+    "identify":{"service":["daedalus-hoard"], "title":["daedalus", "modelos 3d"]},
+    "launch_hint":{"kind":"process", "executable":"{PYTHON}", "argv":["-m","daedalus","--no-browser"], "cwd":"{DAEDALUS_DIR}", "env":{"DAEDALUS_PORT":"8830"}, "readiness":{"url":"{APP_URL}/api/health","timeout_s":30}}
+  },
+  "mcp":{"transport":"stdio", "command":"{PYTHON}", "args":["{DAEDALUS_DIR}/mcp_server.py"], "cwd":"{DAEDALUS_DIR}", "env":{"DAEDALUS_URL":"{APP_URL}","DAEDALUS_TOKEN_FILE":"{TOKEN_FILE}"}},
+  "notes":"Generation and refinement return asynchronous job IDs. Read actual completion with job_get. Refinement preserves the original and may reduce quality; it is optional. GLB uses meters and STL/PLY millimeters with explicit export scale. No automatic print repair, retopology or rigging. Text reasoning uses the shared Sparks through Faustus.",
+  "x-family":{"copilot":true}
+}

@@ -1,0 +1,12 @@
+[
+  {
+    "url": "https://raw.githubusercontent.com/facebookresearch/dinov3/main/LICENSE.md",
+    "path": "licenses/DINOv3-LICENSE.md",
+    "sha256": "25d122eb8f5b880fd23c736fb6ea8018ee45c12237e00b8a86d14c653904999e"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/google/model-viewer/master/LICENSE",
+    "path": "client/vendor/LICENSE-model-viewer",
+    "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+  }
+]

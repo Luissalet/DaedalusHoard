@@ -1,0 +1,25 @@
+{
+  "revision": "95539f56344958339e39b7582a476267d489b0ee",
+  "files": [
+    {
+      "source": "comfy/ldm/trellis2/model.py",
+      "target": "generator_model.py",
+      "source_sha256": "122a68a5344f3982b693817241c90015178fc6487b5f3dffd3cfeec3537f8a1f"
+    },
+    {
+      "source": "comfy/ldm/trellis2/vae.py",
+      "target": "surface_vae.py",
+      "source_sha256": "77d55274133aeb103a97979bb89e16b90f87ecf4018b8a8c0e89c87f45555124"
+    },
+    {
+      "source": "comfy/ldm/trellis2/flexgemm.py",
+      "target": "sparse_ops.py",
+      "source_sha256": "457e6a06149ca440fb56cd29f1194a6d4ba1ede92991d7e438836a631525811b"
+    },
+    {
+      "source": "comfy/image_encoders/dino3.py",
+      "target": "image_encoder.py",
+      "source_sha256": "43b9e1fae3824c2ebaeacf3ded64c6dd3216ca41bbcefb061b4c2f7182bf80ef"
+    }
+  ]
+}

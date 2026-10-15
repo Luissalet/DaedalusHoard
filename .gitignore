@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+data/
+models/
+node_modules/
+.impeccable/review/
+.impeccable/mocks/
+*.log
+*.egg-info/
+qa*-server.json
