@@ -21,3 +21,5 @@ Responsive: controls stack structurally at phone widths; the3D field remains usa
 Confirmed preference: Luis selected direct construction on the real viewer and functions, and both printing and scenes/games while preserving originals and versions. This is a code-led build with no approved visual comp; the name remains an implementation choice.
 
 Honest risk: an overly dense inspection interface could feel technical; keep model-engine parameters behind a small details disclosure and lead with input, model, variants and export. Model quality statements remain limited to the actual tests.
+
+Optional high-resolution enhancement reuses a saved512 latent for the learned1024 stage, preserving the original. Shareable job/comparison links include an explicit full/preview mode. Full geometry selects common clay when toggled for fair inspection; full color is vertex color, while preview retains PBR. Full loading is opt-in and may take longer. New clears the selection without polling restoring history.

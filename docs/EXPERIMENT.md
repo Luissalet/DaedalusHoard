@@ -23,7 +23,7 @@ All runs used physical GPUs1/2/3/0 with individual Hub leases. The global text m
 | Mechanical Detail8192, aligned90 | 5,150,912 | 129.904 | 247.854 |
 | Mechanical Ultra8192, aligned90 | 3,567,536 | 255.194 | 336.602 |
 | Mechanical Ultra32768, aligned90 | 3,994,384 | 1498.456 | 1561.545 |
-| Owl original512 | 1,514,230 | see retained receipt | see retained receipt |
+| Owl original512 | 1,514,230 | 66.686 | 111.025 |
 | Owl Ultra8192, aligned90 | 1,456,020 | 216.895 | 260.303 |
 | Mechanical native512→1024 | 17,486,120 | 295.323 | 661.683 |
 | Owl native512→1024 | 6,038,376 | 142.050 | 234.359 |
@@ -41,3 +41,7 @@ Full geometry inspection is now available through the normal API/MCP-linked view
 Evidence: D:/LocalAI/research-inbox/daedalus-refiners627-20261015, including failed initial Ultra event-name collision (retained), corrected scheduling test, partition proof, per-job MCP receipts, preservation SHA inventory and actual browser screenshots. Private final comparison URLs use port63625; old private63622 and63624 are idle because automatic approval review rejected their stop actions. No retry through another mechanism was made.
 
 Full-mesh browser comparison of the learned1024 versions shows more defined mechanical grilles/raised details and owl eye striations/feather edges than each saved512 original. Front and three-quarter captures use matching clay and linked cameras (upscale-*-full.png). This is a visually useful improvement on these two examples, not evidence of universal reconstruction accuracy or print-readiness. Microgeometry changes and both sources remain available for judgement. The learned second pass is the preferred optional enhancement in this comparison; Ultra remains a separate alternative with mixed preview results.
+
+Full-mesh linked-clay browser comparison shows more defined grilles/raised mechanical details and owl eye striations/feather edges after the learned1024 stage. This is useful visual improvement on these two examples, not a universal quality or printing guarantee. Ultra32768 full geometry also cleans broad surfaces, while changing reliefs; the high-resolution native version retains more fine structure.
+
+During final review an external cleanup removed the active isolated source/evidence and older QA stores. The exact functional checkpoint a0aa53f was recovered from Main refs/rescue/research-inbox-daedalus-refiners627-20261015-product/main. All13jobs survived in the newest independent copy daedalus-qa627b-20261016. Original mechanical model/latent matched pre-cleanup SHA; both upscale source latents match their recorded engine SHA. Current jobs/engine logs, reconstructed receipts and recaptured browser images are retained. Older deleted proof files are not claimed to remain available. Main was not changed by cleanup.

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-15T21:19:24.249018+00:00",
+  "generatedAt": "2026-10-15T22:22:13.102849+00:00",
   "title": "Design System: Daedalus's Hoard",
   "extensions": {
     "colorMeta": {
@@ -344,16 +344,16 @@
     {
       "name": "Secondary button",
       "kind": "button",
-      "description": "Secondary button using the implemented Hoard states.",
-      "html": "<button class=\"ds-secondary\">Crear versión refinada</button>",
+      "description": "Shared outlined action for optional refinement or 512-to-1024 enlargement; the original remains separate.",
+      "html": "<button class=\"ds-secondary\">Ampliar a 1024</button>",
       "css": ".ds-secondary{display:inline-flex;justify-content:center;align-items:center;gap:10px;line-height:1.3;text-decoration:none;border:1px solid transparent;border-radius:5px;cursor:pointer;font-family:var(--hoard-font-sans,'Source Sans 3',sans-serif);font-size:14px;transition:background .18s,color .18s,border-color .18s;background:var(--hoard-surface,#1e2121);color:var(--hoard-text,#e1eaec);padding:10px 12px;border-color:var(--hoard-border-hover,#5e6364);}.ds-secondary:hover{background:var(--hoard-hover,#303334);border-color:var(--hoard-accent,#73d1be)}.ds-secondary:focus-visible{outline:2px solid var(--hoard-accent,#73d1be);outline-offset:3px}.ds-secondary:disabled{opacity:.5;cursor:default}@media(prefers-reduced-motion:reduce){.ds-secondary{transition:none}}",
       "refersTo": "button-secondary"
     },
     {
       "name": "Quiet control",
       "kind": "button",
-      "description": "Quiet control using the implemented Hoard states.",
-      "html": "<button class=\"ds-quiet\" aria-pressed=\"true\">Una sola versión</button>",
+      "description": "Pressed full-view state offers the return to a light preview; the same control style serves comparison and material choices.",
+      "html": "<button class=\"ds-quiet\" aria-pressed=\"true\">Vista ligera</button>",
       "css": ".ds-quiet{display:inline-flex;justify-content:center;align-items:center;gap:10px;line-height:1.3;text-decoration:none;border:1px solid transparent;border-radius:5px;cursor:pointer;font-family:var(--hoard-font-sans,'Source Sans 3',sans-serif);font-size:14px;transition:background .18s,color .18s,border-color .18s;background:var(--hoard-surface,#1e2121);color:var(--hoard-text,#e1eaec);padding:7px 9px;border-color:var(--hoard-border,#3a3d3e);font-size:12px;min-height:36px;}.ds-quiet:hover,.ds-quiet[aria-pressed=true]{background:var(--hoard-accent-soft,rgba(115,209,190,.14));border-color:var(--hoard-accent-line,rgba(115,209,190,.38))}.ds-quiet:focus-visible{outline:2px solid var(--hoard-accent,#73d1be);outline-offset:3px}.ds-quiet:disabled{opacity:.5;cursor:default}@media(prefers-reduced-motion:reduce){.ds-quiet{transition:none}}",
       "refersTo": "button-quiet"
     },
@@ -404,14 +404,14 @@
       "name": "Version selection",
       "kind": "custom",
       "refersTo": "version-selected",
-      "description": "Retained version with engine metadata and semantic selection.",
-      "html": "<button class=\"ds-version\" aria-pressed=\"true\"><span>Refinado · 4</span><small>UltraShape · 8.192 · Terminado</small></button>",
+      "description": "Retained original, refined or enlarged result with resolution or engine metadata and semantic selection. The reproduced metadata density is incumbent evidence, not a readability standard for new surfaces.",
+      "html": "<button class=\"ds-version\" aria-pressed=\"true\"><span>Ampliado · 3</span><small>1024 · Terminado</small></button>",
       "css": ".ds-version{display:flex;flex-direction:column;gap:4px;width:240px;text-align:left;padding:9px 10px;border:1px solid transparent;border-radius:5px;background:none;color:var(--hoard-text,#e1eaec);cursor:pointer;font-family:var(--hoard-font-sans,'Source Sans 3',sans-serif);}.ds-version[aria-pressed=true]{background:var(--hoard-accent-soft,rgba(115,209,190,.14));border-color:var(--hoard-accent-line,rgba(115,209,190,.38))}.ds-version:hover{background:var(--hoard-hover,#303334)}.ds-version span{font-size:12px;font-weight:600}.ds-version small{font-size:11px;color:var(--hoard-text-muted,#b4bcbe)}.ds-version:focus-visible{outline:2px solid var(--hoard-accent,#73d1be);outline-offset:3px}"
     }
   ],
   "narrative": {
     "northStar": "The Hoard Model Workbench",
-    "overview": "The implemented world is the existing Hoard family: shared charcoal surfaces, Cinzel headings, Source Sans 3 controls and Daedalus's turquoise accent. Luis explicitly requested this family style and icon, superseding the earlier light inspection-bench direction. The north star below describes that implemented family workbench; it does not establish a new identity or an approved naming preference.\n\nA compact, flat workspace surrounds a distinct model field. Preparation, retained versions, refinement and export stay legible around the actual geometry. Equal comparison panes and linked orbit let the user inspect an original beside a later version; common clay material supports shape comparison, while color mode restores the actual model materials.\n\nThis record follows the finished client and the desktop/mobile captures. Construction was explicitly code-led: no approved visual comp, QUALITY BAR card or generated critique-reference exists, and no comp-fidelity claim is made. The latest finish pass reported SHIP at its inspected scope; the detector ran DEGRADED with parsers absent. Those are evidence limits, not additional design rules.",
+    "overview": "The implemented world is the existing Hoard family: shared charcoal surfaces, Cinzel headings, Source Sans 3 controls and Daedalus's turquoise accent. Luis explicitly requested this family style and icon, superseding the earlier light inspection-bench direction. The north star below describes that implemented family workbench; it does not establish a new identity or an approved naming preference.\n\nA compact, flat workspace surrounds a distinct model field. Preparation, retained versions, optional refinement or learned enlargement from an original 512 result to 1024, and export stay legible around the actual geometry. Equal comparison panes and linked orbit let the user inspect an original beside a later version; common clay material supports shape comparison, while color mode restores the available model color or materials.\n\nThis record follows the finished client and the final mechanical/owl front and quarter comparison captures plus the full mobile page. Construction was explicitly code-led: no approved visual comp, QUALITY BAR card or generated critique-reference exists, and no comp-fidelity claim is made. FINISH-R3.md reports SHIP only at its inspected scope. The single earlier detector pass was DEGRADED and regex-only with parsers absent; it was not repeated for this refresh. Those are evidence limits, not additional design rules.",
     "keyCharacteristics": [
       "Inherited charcoal surfaces with a single turquoise action accent.",
       "Self-hosted Cinzel headings and Source Sans 3 operational text.",

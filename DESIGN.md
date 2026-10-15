@@ -109,9 +109,9 @@ components:
 
 The implemented world is the existing Hoard family: shared charcoal surfaces, Cinzel headings, Source Sans 3 controls and Daedalus's turquoise accent. Luis explicitly requested this family style and icon, superseding the earlier light inspection-bench direction. The north star below describes that implemented family workbench; it does not establish a new identity or an approved naming preference.
 
-A compact, flat workspace surrounds a distinct model field. Preparation, retained versions, refinement and export stay legible around the actual geometry. Equal comparison panes and linked orbit let the user inspect an original beside a later version; common clay material supports shape comparison, while color mode restores the actual model materials.
+A compact, flat workspace surrounds a distinct model field. Preparation, retained versions, optional refinement or learned enlargement from an original 512 result to 1024, and export stay legible around the actual geometry. Equal comparison panes and linked orbit let the user inspect an original beside a later version; common clay material supports shape comparison, while color mode restores the available model color or materials.
 
-This record follows the finished client and the desktop/mobile captures. Construction was explicitly code-led: no approved visual comp, QUALITY BAR card or generated critique-reference exists, and no comp-fidelity claim is made. The latest finish pass reported SHIP at its inspected scope; the detector ran DEGRADED with parsers absent. Those are evidence limits, not additional design rules.
+This record follows the finished client and the final mechanical/owl front and quarter comparison captures plus the full mobile page. Construction was explicitly code-led: no approved visual comp, QUALITY BAR card or generated critique-reference exists, and no comp-fidelity claim is made. FINISH-R3.md reports SHIP only at its inspected scope. The single earlier detector pass was DEGRADED and regex-only with parsers absent; it was not repeated for this refresh. Those are evidence limits, not additional design rules.
 
 **Key Characteristics:**
 
@@ -219,7 +219,11 @@ The header uses plain sans-serif view buttons. Active navigation gains turquoise
 
 ### Version Inspection
 
-Versions are full-width, left-aligned buttons with a compact name and a supporting engine/state description. Selection uses Turquoise Wash, Turquoise Boundary and `aria-pressed`. Comparison divides the model field into equal flex panes with a fine central line and small elevated-charcoal labels. Camera changes are linked. Entering comparison selects common clay geometry; the material control can restore color. Original and later versions remain separately selectable, with engine/token details named rather than implying a quality ranking.
+Versions are full-width, left-aligned buttons with a compact name and a supporting engine/state description. Selection uses Turquoise Wash, Turquoise Boundary and `aria-pressed`. Original, refined and enlarged versions remain separately selectable, with resolution or engine/token details named rather than implying a quality ranking. The optional “Ampliar a 1024” action uses the existing secondary button, separated from refinement by a fine divider and supporting copy. It appears for a completed original 512 generation and retains the source as a separate version.
+
+Comparison divides the model field into equal flex panes with a fine central line and small elevated-charcoal labels. Camera changes are linked. Entering comparison or activating the full-view control selects common clay geometry. “Vista completa” loads the full mesh; “Vista ligera” returns to the preview. The footer explicitly identifies full geometry or the preview face count. In the full view, “Ver color” restores the full mesh's vertex color/PBR-light appearance; the preview uses “Ver materiales”. These controls expose inspection choices, not a quality score. The viewer's full/light setting is separate from the export geometry checkbox.
+
+Direct links retain the selected job and the active comparison/full-view states through `job`, `compare=1` and `full=1` query parameters. A comparison link selects the original alongside its later version in clay; the ordinary single-version view remains available. This state behavior belongs to the workbench, without introducing a new visual primitive.
 
 ## Do's and Don'ts
 
@@ -240,4 +244,4 @@ Versions are full-width, left-aligned buttons with a compact name and a supporti
 - **Don't** replace real output with a demonstration model or overwrite the original with a refined version.
 - **Don't** turn the incumbent 10–11px metadata sizes into a new minimum-size standard for future surfaces.
 
-<!-- Refreshed from client/style.css, client/vendor/hoard-theme.css, client/index.html, client/app.js, .impeccable/review/desktop.png and mobile.png, following PRODUCT.md and .impeccable/surfaces/workbench.md. Supersedes the light inspection-bench palette and utility-only type record under the user's explicit Hoard-family request. Not canonized: 10–11px metadata density, absent parser coverage, absent comp/QUALITY BAR/critique-reference artifacts, and historical stale-DESIGN detector warnings. -->
+<!-- Refreshed after the final UI correction from client/style.css, client/vendor/hoard-theme.css, client/index.html and client/app.js, following PRODUCT.md and .impeccable/surfaces/workbench.md. Final evidence in the parent research directory: upscale-mechanical-front-full.png, upscale-mechanical-quarter-full.png, upscale-owl-front-full.png, upscale-owl-quarter-full.png, mobile-upscale-full.png and FINISH-R3.md (SHIP at its inspected scope). Preserves the explicit Hoard-family world and existing token frontmatter; the earlier light inspection-bench direction remains superseded. Not canonized: 10–11px metadata density, absent parser coverage, absent comp/QUALITY BAR/critique-reference artifacts, and historical stale-DESIGN detector warnings. No new detector pass. -->
