@@ -19,3 +19,5 @@ Daedalus incorporates detached source and its own execution pipeline. Historical
 | Daedalus dragon icon | Built-in image generation with existing Hoard family icon references | Exact prompt and provenance in `docs/icon-*`; original generation retained separately. |
 
 The Python dependencies retain their respective licenses in the installed environment. The application repository contains no model weights. Redistribution of weights must include the corresponding model licenses and provenance. Research reference checkouts remain separate from the installed product.
+
+Optional mesh processing: PyMeshFix0.17.1 / MeshFix (GPL-3.0, pinned to the published GPL release; licenses/MeshFix-0.17.1-LICENSE.txt), xatlas-python0.0.11 and xatlas (MIT; licenses/xatlas-python-LICENSE.txt), fast-simplification (MIT), Trimesh (MIT) and SciPy (BSD). These are in-process geometry libraries, not external application runtimes. Own CPU job/validation/material baking code lives in daedalus/geometry/postprocess.py. Exact notice sources and SHA are in docs/postprocessing-provenance.json.

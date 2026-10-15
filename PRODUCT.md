@@ -47,3 +47,7 @@ Real generated/refined files, timings, per-GPU execution traces, licensing notes
 - Help the user compare shape before selecting a refined version.
 - Share GPU resources through the existing Hub and keep the global text-model service available.
 - Product API, MCP and browser use the same persisted jobs and artifacts.
+
+## Optional print and game versions
+
+Luis explicitly requested repair for printing and a version optimized for games. Each is a new child job with the original retained. Print repair reports measured topological closure rather than guaranteeing a usable print; wall thickness and supports remain slicer decisions. Game optimization exposes triangle/texture budgets and bakes PBR onto packed UV charts, without claiming animation retopology or rigging. Both operations run in the native CPU worker without GPU reservations and share API/MCP, queue/cancel, library, comparison and exports.

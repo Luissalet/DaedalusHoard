@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-15T22:22:13.102849+00:00",
+  "generatedAt": "2026-10-15T23:27:27.510369+00:00",
   "title": "Design System: Daedalus's Hoard",
   "extensions": {
     "colorMeta": {
@@ -344,7 +344,7 @@
     {
       "name": "Secondary button",
       "kind": "button",
-      "description": "Shared outlined action for optional refinement or 512-to-1024 enlargement; the original remains separate.",
+      "description": "Shared outlined action for optional print repair, game preparation, refinement or 512-to-1024 enlargement; each retains its source as a separate version.",
       "html": "<button class=\"ds-secondary\">Ampliar a 1024</button>",
       "css": ".ds-secondary{display:inline-flex;justify-content:center;align-items:center;gap:10px;line-height:1.3;text-decoration:none;border:1px solid transparent;border-radius:5px;cursor:pointer;font-family:var(--hoard-font-sans,'Source Sans 3',sans-serif);font-size:14px;transition:background .18s,color .18s,border-color .18s;background:var(--hoard-surface,#1e2121);color:var(--hoard-text,#e1eaec);padding:10px 12px;border-color:var(--hoard-border-hover,#5e6364);}.ds-secondary:hover{background:var(--hoard-hover,#303334);border-color:var(--hoard-accent,#73d1be)}.ds-secondary:focus-visible{outline:2px solid var(--hoard-accent,#73d1be);outline-offset:3px}.ds-secondary:disabled{opacity:.5;cursor:default}@media(prefers-reduced-motion:reduce){.ds-secondary{transition:none}}",
       "refersTo": "button-secondary"
@@ -367,7 +367,7 @@
     {
       "name": "Text action",
       "kind": "button",
-      "description": "Text action using the implemented Hoard states.",
+      "description": "Turquoise text action used for library access and the completed processing report download; no extra filled container.",
       "html": "<button class=\"ds-text\">Ver biblioteca</button>",
       "css": ".ds-text{display:inline-flex;justify-content:center;align-items:center;gap:10px;line-height:1.3;text-decoration:none;border:1px solid transparent;border-radius:5px;cursor:pointer;font-family:var(--hoard-font-sans,'Source Sans 3',sans-serif);font-size:14px;transition:background .18s,color .18s,border-color .18s;border:0;background:none;padding:4px 0;color:var(--hoard-accent,#73d1be);font-size:12px;text-align:left;text-underline-offset:3px;}.ds-text:hover{text-decoration:underline}.ds-text:focus-visible{outline:2px solid var(--hoard-accent,#73d1be);outline-offset:3px}.ds-text:disabled{opacity:.5;cursor:default}@media(prefers-reduced-motion:reduce){.ds-text{transition:none}}"
     },
@@ -375,7 +375,7 @@
       "name": "Labeled field",
       "kind": "input",
       "refersTo": "input",
-      "description": "Visible label above a compact field.",
+      "description": "Visible label above a compact field; reused for naming, export scale and destination-specific face or texture choices.",
       "html": "<label class=\"ds-field\">Nombre<input type=\"text\" placeholder=\"Nombre de la pieza\"></label>",
       "css": ".ds-field{display:block;font-size:12px;font-weight:600;color:var(--hoard-text,#e1eaec);font-family:var(--hoard-font-sans,'Source Sans 3',sans-serif);}.ds-field input{display:block;width:100%;padding:10px 11px;border:1px solid var(--hoard-border-hover,#5e6364);border-radius:5px;background:var(--hoard-surface,#1e2121);color:var(--hoard-text,#e1eaec);margin-top:7px;font-family:var(--hoard-font-sans,'Source Sans 3',sans-serif);font-size:14px;font-weight:400;min-width:0;caret-color:var(--hoard-accent,#73d1be)}.ds-field input::placeholder{color:var(--hoard-text-dim,#9ba4a6)}.ds-field input:hover{border-color:var(--hoard-border-hover,#5e6364)}.ds-field input:focus-visible{outline:2px solid var(--hoard-accent,#73d1be);outline-offset:3px}"
     },
@@ -404,14 +404,14 @@
       "name": "Version selection",
       "kind": "custom",
       "refersTo": "version-selected",
-      "description": "Retained original, refined or enlarged result with resolution or engine metadata and semantic selection. The reproduced metadata density is incumbent evidence, not a readability standard for new surfaces.",
+      "description": "Retained original, refined, enlarged, repaired or game version with actual state and semantic selection. Completed games show measured result faces, not the requested limit; other rows use resolution, engine or printing metadata. The reproduced metadata density is incumbent evidence, not a readability standard for new surfaces.",
       "html": "<button class=\"ds-version\" aria-pressed=\"true\"><span>Ampliado · 3</span><small>1024 · Terminado</small></button>",
       "css": ".ds-version{display:flex;flex-direction:column;gap:4px;width:240px;text-align:left;padding:9px 10px;border:1px solid transparent;border-radius:5px;background:none;color:var(--hoard-text,#e1eaec);cursor:pointer;font-family:var(--hoard-font-sans,'Source Sans 3',sans-serif);}.ds-version[aria-pressed=true]{background:var(--hoard-accent-soft,rgba(115,209,190,.14));border-color:var(--hoard-accent-line,rgba(115,209,190,.38))}.ds-version:hover{background:var(--hoard-hover,#303334)}.ds-version span{font-size:12px;font-weight:600}.ds-version small{font-size:11px;color:var(--hoard-text-muted,#b4bcbe)}.ds-version:focus-visible{outline:2px solid var(--hoard-accent,#73d1be);outline-offset:3px}"
     }
   ],
   "narrative": {
     "northStar": "The Hoard Model Workbench",
-    "overview": "The implemented world is the existing Hoard family: shared charcoal surfaces, Cinzel headings, Source Sans 3 controls and Daedalus's turquoise accent. Luis explicitly requested this family style and icon, superseding the earlier light inspection-bench direction. The north star below describes that implemented family workbench; it does not establish a new identity or an approved naming preference.\n\nA compact, flat workspace surrounds a distinct model field. Preparation, retained versions, optional refinement or learned enlargement from an original 512 result to 1024, and export stay legible around the actual geometry. Equal comparison panes and linked orbit let the user inspect an original beside a later version; common clay material supports shape comparison, while color mode restores the available model color or materials.\n\nThis record follows the finished client and the final mechanical/owl front and quarter comparison captures plus the full mobile page. Construction was explicitly code-led: no approved visual comp, QUALITY BAR card or generated critique-reference exists, and no comp-fidelity claim is made. FINISH-R3.md reports SHIP only at its inspected scope. The single earlier detector pass was DEGRADED and regex-only with parsers absent; it was not repeated for this refresh. Those are evidence limits, not additional design rules.",
+    "overview": "The implemented world is the existing Hoard family: shared charcoal surfaces, Cinzel headings, Source Sans 3 controls and Daedalus's turquoise accent. Luis explicitly requested this family style and icon, superseding the earlier light inspection-bench direction. The north star below describes that implemented family workbench; it does not establish a new identity or an approved naming preference.\n\nA compact, flat workspace surrounds a distinct model field. Preparation, retained versions, optional print repair or game optimization, refinement or learned enlargement from an original 512 result to 1024, and export stay legible around the actual geometry. Equal comparison panes and linked orbit let the user inspect an original beside a later version; common clay material supports shape comparison, while color mode restores the available model color or materials.\n\nThis record follows the current client and the authentic desktop and mobile captures in `.impeccable/review/`, including the optional preparation controls. Construction was explicitly code-led: no approved visual comp, QUALITY BAR card or generated critique-reference exists, and no comp-fidelity claim is made. The captures show interface states, not evidence that pending CPU operations improved a model, verified closure or met a requested budget. The earlier FINISH-R3.md verdict remains limited to its original scope. The single earlier detector pass was DEGRADED and regex-only with parsers absent; neither context capture nor detector was repeated for this refresh. Those are evidence limits, not additional design rules.",
     "keyCharacteristics": [
       "Inherited charcoal surfaces with a single turquoise action accent.",
       "Self-hosted Cinzel headings and Source Sans 3 operational text.",

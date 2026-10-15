@@ -149,6 +149,14 @@ def main():
     folder=Path(spec['output_dir'])
     begin=time.perf_counter()
     try:
+        if spec['kind'] in {'repair','optimize'}:
+            from .geometry import postprocess
+            result=postprocess.run(spec,progress)
+            temporary=folder/'artifacts.json.tmp'
+            temporary.write_text(json.dumps(result,indent=2),encoding='utf-8')
+            temporary.replace(folder/'artifacts.json')
+            progress('complete',1)
+            return
         progress('preparing_image',.005)
         prepare_input(spec)
         progress('loading_models',.01)

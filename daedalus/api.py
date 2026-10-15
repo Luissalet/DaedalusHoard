@@ -42,6 +42,14 @@ class UpscaleInput(BaseModel):
     steps:int=Field(default=12,ge=1)
     seed:int=Field(default=42,ge=0,le=2**63-1)
 
+class RepairInput(BaseModel):
+    detail_faces:int|None=Field(default=1000000,ge=1000)
+    remove_small_components:bool=False
+
+class OptimizeInput(BaseModel):
+    target_faces:int=Field(default=50000,ge=100)
+    texture_size:Literal[512,1024,2048,4096]=2048
+
 def public_job(job):
     if not job:
         raise HTTPException(404,'No se ha encontrado ese modelo.')
@@ -143,6 +151,15 @@ def create_app(data_dir=None,runner=None):
         app.state.manager.enqueue(job['id'])
         return public_job(job)
 
+    def submit_processing(identity,body,kind):
+        parent=store.job(identity)
+        if not parent or parent['status']!='complete':
+            raise HTTPException(409,'Elige una versión terminada para crear otra pasada.')
+        request=(RepairInput if kind=='repair' else OptimizeInput).model_validate(body)
+        job=store.create(kind,parent['image_id'],parent['title'],request.model_dump(),parent_id=identity)
+        app.state.manager.enqueue(job['id'])
+        return public_job(job)
+
     @app.get('/api/health')
     def health():
         return {'ok':True,'service':'daedalus-hoard','version':'0.1.0'}
@@ -196,6 +213,14 @@ def create_app(data_dir=None,runner=None):
     @app.post('/api/jobs/{identity}/upscale')
     def upscale(identity:str,body:UpscaleInput):
         return submit_upscale(identity,body.model_dump())
+
+    @app.post('/api/jobs/{identity}/repair')
+    def repair(identity:str,body:RepairInput):
+        return submit_processing(identity,body.model_dump(),'repair')
+
+    @app.post('/api/jobs/{identity}/optimize')
+    def optimize(identity:str,body:OptimizeInput):
+        return submit_processing(identity,body.model_dump(),'optimize')
 
     @app.post('/api/jobs/{identity}/cancel')
     def cancel(identity:str):
@@ -292,6 +317,9 @@ def create_app(data_dir=None,runner=None):
         if name=='model_upscale':
             identity=args.pop('job_id')
             return submit_upscale(identity,args)
+        if name in {'model_repair','model_optimize'}:
+            identity=args.pop('job_id')
+            return submit_processing(identity,args,'repair' if name=='model_repair' else 'optimize')
         if name=='image_import':
             path=Path(args['path']).expanduser().resolve()
             if not path.is_file():
@@ -357,8 +385,8 @@ def create_app(data_dir=None,runner=None):
     def context(job_id:str|None=None):
         job=store.job(job_id) if job_id else None
         return {'app_id':'daedalus','app_name':"Daedalus's Hoard",'active_job':public_job(job) if job else None,
-                'capabilities':['image-to-3d','optional-refinement','version-comparison','glb-stl-ply-export'],
-                'facts':'El refinado conserva el original y no garantiza una mejora; la malla puede estar abierta.'}
+                'capabilities':['image-to-3d','optional-refinement','latent-upscaling','mesh-repair','game-optimization','version-comparison','glb-stl-ply-export'],
+                'facts':'Cada pasada conserva el original. La reparación informa del cierre comprobado; juegos permite presupuesto de caras y texturas. Los soportes y el grosor se revisan antes de imprimir.'}
 
     install_copilot(app,'daedalus',config.data,app_name="Daedalus's Hoard")
     install_guard(app,port_getter=lambda:config.port,allowed_env='DAEDALUS_ALLOWED_HOSTS')

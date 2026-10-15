@@ -1,10 +1,12 @@
 # Daedalus's Hoard
 
-Generación local de modelos 3D desde imágenes, con una pasada de refinado opcional y comparación de versiones.
+Generación local de modelos 3D desde imágenes, con refinado, reparación para impresión y optimización para juegos opcionales.
 
 Importa PNG, JPG o WebP, genera a 512 o 1024 y conserva el modelo completo. El visor permite inspeccionar materiales o geometría, comparar un refinado con su original con cámaras enlazadas y descargar GLB, STL o PLY indicando el tamaño del lado mayor. La biblioteca conserva trabajos, errores y versiones entre sesiones. Cancelar un trabajo no borra sus originales.
 
-El refinado crea otra geometría y puede perder huecos o detalles. Permite elegir UltraShape o DetailGen3D. UltraShape admite 2.048, 8.192 o 32.768 latentes; DetailGen mantiene 2.048 y 8.192. Los pasos y el giro del frente se pueden ajustar: se alinea una copia para la referencia y la salida vuelve a la orientación original. Los trabajos anteriores mantienen sus parámetros. En el ejemplo mecánico, DetailGen sigue perdiendo huecos incluso con el frente corregido. UltraShape a 8.192 conserva mejor la estructura y limpia algunas superficies, pero también cambia detalles y profundidad; no se ha acreditado una mejora global sobre el original. Las pasadas se conservan para elegir por comparación. Los materiales del refinado se transfieren de la generación si se selecciona «Conservar aspecto»; no son una nueva síntesis de texturas. Las mallas abiertas requieren preparación antes de imprimir; no hay reparación, retopología ni rigging automáticos.
+El refinado crea otra geometría y puede perder huecos o detalles. Permite elegir UltraShape o DetailGen3D. UltraShape admite 2.048, 8.192 o 32.768 latentes; DetailGen mantiene 2.048 y 8.192. Los pasos y el giro del frente se pueden ajustar: se alinea una copia para la referencia y la salida vuelve a la orientación original. Los trabajos anteriores mantienen sus parámetros. En el ejemplo mecánico, DetailGen sigue perdiendo huecos incluso con el frente corregido. UltraShape a 8.192 conserva mejor la estructura y limpia algunas superficies, pero también cambia detalles y profundidad; no se ha acreditado una mejora global sobre el original. Las pasadas se conservan para elegir por comparación. Los materiales del refinado se transfieren de la generación si se selecciona «Conservar aspecto»; no son una nueva síntesis de texturas.
+
+«Preparar una versión» añade dos pasadas independientes sobre cualquier resultado terminado. **Impresión** limpia la malla, rellena bordes y trata intersecciones; informa del cierre, orientación, piezas y aristas abiertas. Por defecto no elimina las piezas menores. Puede limitar el detalle de trabajo o conservarlo completo. **Juegos** reduce los triángulos al presupuesto solicitado, crea UV y hornea color, transparencia, metal y rugosidad en texturas de 512 a 4096. Si no alcanza el presupuesto, lo indica. Ambas trabajan en CPU, conservan originales y versiones, permiten cancelar y añaden un informe descargable. No añaden rigging ni retopología de animación. El cierre no verifica grosor mínimo, soportes ni parámetros del laminador. Véase `docs/POSTPROCESSING.md`.
 
 ## Ejecución
 
@@ -24,7 +26,7 @@ El tamaño no se deduce de una imagen. El lado mayor indicado al exportar se esc
 
 ## API y MCP
 
-`python -m daedalus` inicia la aplicación. `python -m daedalus.mcp` expone 12 herramientas por stdio contra esa misma API: importar imagen, generar, ampliar a 1024, refinar, listar/leer/cancelar trabajos, consultar versiones, renombrar, exportar, consultar motores y configurar su carpeta. Generar, ampliar y refinar devuelven un ID de trabajo asíncrono; `job_get` lee el estado real. Configuración MCP en `faustus-plugin.json`; `DAEDALUS_URL` selecciona la instancia y `DAEDALUS_TOKEN_FILE` su token local. Los agentes y la interfaz utilizan la misma cola y los mismos datos.
+`python -m daedalus` inicia la aplicación. `python -m daedalus.mcp` expone 14 herramientas por stdio contra esa misma API: importar imagen, generar, ampliar a 1024, refinar, reparar, optimizar para juegos, listar/leer/cancelar trabajos, consultar versiones, renombrar, exportar, consultar motores y configurar su carpeta. Las pasadas devuelven un ID de trabajo asíncrono; `job_get` lee el estado real. Configuración MCP en `faustus-plugin.json`; `DAEDALUS_URL` selecciona la instancia y `DAEDALUS_TOKEN_FILE` su token local. Los agentes y la interfaz utilizan la misma cola y los mismos datos.
 
 ## Verificación
 

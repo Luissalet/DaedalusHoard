@@ -1,0 +1,13 @@
+[
+  {
+    "path": "licenses/MeshFix-0.17.1-LICENSE.txt",
+    "origin": "https://raw.githubusercontent.com/pyvista/pymeshfix/v0.17.1/LICENSE",
+    "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903"
+  },
+  {
+    "path": "licenses/xatlas-python-LICENSE.txt",
+    "origin": "https://pypi.org/project/xatlas/0.0.11/",
+    "source": "xatlas-0.0.11 wheel: xatlas-0.0.11.dist-info/licenses/LICENSE",
+    "sha256": "095750fc0f9031d1a517cf734690d50cfd98c08a1d09473be006b86f488a4fc8"
+  }
+]
