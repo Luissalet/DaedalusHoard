@@ -21,6 +21,7 @@ class Config:
         self.gpus=[1,2,3,0]
 
     def model_status(self):
+        model_root=self.models
         files={
             'generator':['generator/diffusion_models/trellis_2_bf16.safetensors','generator/clip_vision/dino_v3_vit_l.safetensors',
                          'generator/vae/trellis_2_shape_vae_bf16.safetensors','generator/vae/trellis_2_texture_vae_bf16.safetensors','generator/pipeline.json'],
@@ -28,5 +29,5 @@ class Config:
                        'refiner/image_encoder_1/model.safetensors','refiner/image_encoder_1/config.json',
                        'refiner/feature_extractor_1/preprocessor_config.json','refiner/scheduler/scheduler_config.json',
                        'refiner/noise_scheduler/scheduler_config.json']}
-        return {name:{'ready':all((self.models/path).is_file() for path in paths),
-                      'missing':[path for path in paths if not (self.models/path).is_file()]} for name,paths in files.items()}
+        return {name:{'ready':all((model_root/path).is_file() for path in paths),
+                      'missing':[path for path in paths if not (model_root/path).is_file()]} for name,paths in files.items()}

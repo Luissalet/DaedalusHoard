@@ -5,6 +5,7 @@ import math
 from pathlib import Path
 import shutil
 import subprocess
+import threading
 from typing import Literal
 import uuid
 
@@ -50,6 +51,7 @@ def create_app(data_dir=None,runner=None):
     store=Store(config.data/'daedalus.db')
     token=read_or_create_token(config.data/'mcp-token')
     instance=FileLock(str(config.data/'server.lock'))
+    settings_lock=threading.RLock()
 
     @asynccontextmanager
     async def lifespan(app):
@@ -258,15 +260,17 @@ def create_app(data_dir=None,runner=None):
         path=Path(str(body.get('model_dir',''))).expanduser().resolve()
         if not path.is_dir():
             raise HTTPException(400,'No se encuentra esa carpeta de modelos.')
-        temporary=config.data/'settings.json.tmp'
-        temporary.write_text(json.dumps({'model_dir':str(path)}),encoding='utf-8')
-        temporary.replace(config.data/'settings.json')
-        config.models=path
-        return {'model_dir':str(path),'models':config.model_status()}
+        with settings_lock:
+            temporary=config.data/'settings.json.tmp'
+            temporary.write_text(json.dumps({'model_dir':str(path)}),encoding='utf-8')
+            temporary.replace(config.data/'settings.json')
+            config.models=path
+            return {'model_dir':str(path),'models':config.model_status()}
 
     @app.get('/api/settings')
     def settings():
-        return {'model_dir':str(config.models),'models':config.model_status()}
+        with settings_lock:
+            return {'model_dir':str(config.models),'models':config.model_status()}
 
     @app.patch('/api/settings')
     def save_settings(body:dict):

@@ -137,3 +137,25 @@ def test_restart_does_not_steal_active_data_directory(client):
     with pytest.raises(RuntimeError,match='instancia'):
         with TestClient(other,base_url='http://127.0.0.1'):
             pass
+
+def test_concurrent_browser_and_agent_settings_keep_valid_configuration(client,tmp_path):
+    from concurrent.futures import ThreadPoolExecutor
+    folders=[tmp_path/'models-a',tmp_path/'models-b']
+    for folder in folders:
+        folder.mkdir()
+    token=(client.app.state.config.data/'mcp-token').read_text().strip()
+    def save(index):
+        body={'model_dir':str(folders[index%2])}
+        if index%2:
+            response=client.post('/api/agent/call',headers={'Authorization':'Bearer '+token},
+                                 json={'name':'models_configure','arguments':body})
+            assert response.status_code==200,response.text
+            return response.json()['result']['model_dir']
+        response=client.patch('/api/settings',json=body)
+        assert response.status_code==200,response.text
+        return response.json()['model_dir']
+    with ThreadPoolExecutor(max_workers=8) as pool:
+        results=list(pool.map(save,range(32)))
+    assert results==[str(folders[index%2]) for index in range(32)]
+    saved=json.loads((client.app.state.config.data/'settings.json').read_text())
+    assert saved['model_dir']==client.get('/api/settings').json()['model_dir']
