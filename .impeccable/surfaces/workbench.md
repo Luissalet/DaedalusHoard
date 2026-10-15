@@ -6,6 +6,10 @@ The primary task is to import a reference image, generate a model, inspect it, o
 
 ## Direction contract
 
+FORM: seed key `f07c6bfe`, assigned direction6 from `concept-seed.mjs --scope direction --mode operate` in this build session. Execution is code-led, explicitly confirmed by Luis. No approved comp, QUALITY BAR card or generated critique-reference exists for this build; review uses the written contract and actual screenshots, without claiming measured comp fidelity.
+
+Audience: Luis using the local four-GPU workstation. Job: produce an editable/exportable model from one reference. Action: import, generate, inspect, optionally compare refinement, choose a version and export. Proof/content: actual persisted jobs, real generated GLBs and geometry/material controls. Constraints: preserve originals, explicit export dimensions, shared Hub leases, no automatic improvement or print-readiness promise.
+
 Assigned grounded direction6: a microscopy workbench, translated into a digital model inspection bench. The specimen is the actual3D model; preparation and variants stay alongside it. This is a functional organization, not a laboratory costume. A calm light interface suits the user's desktop workspace; the3D field is a separate neutral surface so silhouettes remain readable.
 
 Seven grounded candidates considered, in resonance order: CAD workbench, photographic contact sheet, architecture maquette catalogue, ceramic workshop trays, print proof sheet, microscopy inspection bench, audio production desk. The assigned sixth direction is retained. The strongest alternative was the familiar CAD workbench; it adds no reason to discard the assigned inspection emphasis.

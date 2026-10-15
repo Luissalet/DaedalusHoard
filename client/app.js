@@ -13,6 +13,7 @@ async function api(path,options={}){
 const json=(method,body)=>({method,headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
 function notice(message,error=false){$('notice').textContent=message;$('notice').dataset.error=String(error);$('notice').hidden=false;clearTimeout(state.noticeTimer);state.noticeTimer=setTimeout(()=>{$('notice').hidden=true},6000)}
 const jobById=id=>state.jobs.find(job=>job.id===id);
+$('export-size').addEventListener('input',updateExport);
 const currentJob=()=>jobById(state.selected);
 const statusName=job=>stageNames[job.stage]||stageNames[job.status]||'Preparando';
 const number=value=>new Intl.NumberFormat('es').format(value);
