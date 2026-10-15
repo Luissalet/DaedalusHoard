@@ -7,7 +7,7 @@ TOOLS=[
  tool('model_generate','Queue real image-to-3D generation distributed across four GPUs. Returns a job ID; inspect its status.',
       {'image_id':{'type':'string'},'title':{'type':'string'},'resolution':{'type':'integer','enum':[512,1024],'default':512},
        'seed':{'type':'integer','default':42},'remove_background':{'type':'boolean','default':True}},['image_id']),
- tool('model_refine','Create a separate refined version of a completed model. Improvement is not guaranteed; compare with the original.',
+ tool('model_refine','Create a separate refined version. Choose backend explicitly: UltraShape is image-guided, DetailGen is the legacy default. Compare the result through comparison_url; improvement is not guaranteed.',
       {**JOB,'backend':{'type':'string','enum':['detail','ultra'],'default':'detail'},
        'tokens':{'type':'integer','enum':[2048,8192,32768],'default':2048},
        'alignment_degrees':{'type':'integer','enum':[0,90,180,270],'description':'Rotate a COPY to match the reference front; output is returned to the original pose. Default:0 Detail,90 Ultra.'},

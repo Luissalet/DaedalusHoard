@@ -1,7 +1,9 @@
 const $=id=>document.getElementById(id);
 const activeStates=new Set(['queued','waiting','running','cancelling']);
 const stageNames={queued:'En cola',waiting_resources:'Esperando las gráficas',loading_models:'Cargando el motor',preparing_image:'Preparando la imagen',preparing_geometry:'Preparando la geometría',building_structure:'Construyendo la estructura',generating_shape:'Generando la forma',adding_detail:'Añadiendo detalle',generating_materials:'Generando los materiales',decoding_materials:'Preparando los materiales',decoding_mesh:'Construyendo la malla',refining_shape:'Refinando la forma',preparing_export:'Preparando los archivos',smoothing_preview:'Terminando la vista del modelo',complete:'Terminado',cancelled:'Cancelado',cancelling:'Cancelando',error:'No ha terminado',interrupted:'Interrumpido'};
-const state={jobs:[],selected:null,image:null,view:'create',clay:false,compare:false,libraryCount:40,status:null,noticeTimer:null};
+const initialQuery=new URLSearchParams(location.search);
+const initialCompare=initialQuery.get('compare')==='1';
+const state={jobs:[],selected:initialQuery.get('job'),initialized:false,image:null,view:'create',clay:initialCompare,compare:initialCompare,libraryCount:40,status:null,noticeTimer:null};
 let orbitSync=false;
 
 async function api(path,options={}){
@@ -25,9 +27,14 @@ async function selectJob(identity){state.selected=identity;state.compare=false;s
 function modelSource(viewer,job,clay){const url=job?.result?.urls?.[clay?'clay':'glb'];if(!url){viewer.removeAttribute('src');return}if(viewer.getAttribute('src')!==url){viewer.dataset.jobId=job.id;viewer.setAttribute('src',url)}}
 function renderSelected(){
   const job=currentJob();
+  const address=new URL(location.href);
+  if(job)address.searchParams.set('job',job.id);else address.searchParams.delete('job');
+  if(job?.parent_id&&state.compare)address.searchParams.set('compare','1');else address.searchParams.delete('compare');
+  if(address.href!==location.href)history.replaceState(null,'',address);
   const pending=job&&activeStates.has(job.status);
   const display=job?.status==='complete'?job:job?.parent_id?jobById(job.parent_id):null;
   const ready=display?.status==='complete';
+  const compare=!!(ready&&state.compare&&job?.status==='complete'&&job?.parent_id);
   $('current-title').textContent=job?.title||'Vista del modelo';
   $('current-version').textContent=job?(job.kind==='refine'?'Versión refinada':'Generación original'):'';
   $('empty-viewer').hidden=!!ready;$('models').hidden=!ready;
@@ -40,9 +47,8 @@ function renderSelected(){
   $('material-toggle').textContent=state.clay?'Ver materiales':'Ver geometría';
   $('material-toggle').setAttribute('aria-pressed',String(state.clay));
   $('compare-toggle').disabled=!(job?.status==='complete'&&job.parent_id);
-  $('compare-toggle').textContent=state.compare?'Una sola versión':'Comparar original';
-  $('compare-toggle').setAttribute('aria-pressed',String(state.compare));
-  const compare=ready&&state.compare&&job?.parent_id;
+  $('compare-toggle').textContent=compare?'Una sola versión':'Comparar original';
+  $('compare-toggle').setAttribute('aria-pressed',String(compare));
   $('baseline-wrap').hidden=!compare;$('model-label').hidden=!compare;
   if(ready){modelSource($('model'),display,state.clay);if(compare)modelSource($('baseline'),rootJob(job),state.clay);const metrics=display.result.metrics;$('geometry-info').textContent=`${number(metrics.faces)} caras · vista de ${number(metrics.preview_faces)} caras`;$('mesh-state').textContent=metrics.watertight?'Malla cerrada':'Malla abierta';}
   else{$('geometry-info').textContent='Gira con el ratón y acerca con la rueda.';$('mesh-state').textContent='';$('model').removeAttribute('src')}
@@ -55,7 +61,7 @@ function updateExport(){const job=currentJob();if(job?.status!=='complete')retur
 function addRecent(job){const button=document.createElement('button');button.className='recent-item';const img=document.createElement('img');img.src=job.reference_url;img.alt='Referencia';const copy=document.createElement('span');const title=document.createElement('strong');title.textContent=job.title;const detail=document.createElement('small');detail.textContent=statusName(job);copy.append(title,detail);button.append(img,copy);button.addEventListener('click',()=>selectJob(job.id));return button}
 function renderRecent(){const list=$('recent-jobs');list.replaceChildren();state.jobs.slice(0,4).forEach(job=>list.append(addRecent(job)));if(!state.jobs.length){const p=document.createElement('p');p.className='small muted';p.textContent='Tus últimas piezas aparecerán aquí.';list.append(p)}}
 function renderLibrary(){const search=$('search-models').value.toLocaleLowerCase('es');const filter=$('filter-status').value;const jobs=state.jobs.filter(job=>job.title.toLocaleLowerCase('es').includes(search)&&(filter==='all'||(filter==='active'?activeStates.has(job.status):filter==='error'?['error','interrupted'].includes(job.status):job.status===filter)));const list=$('library-grid');list.replaceChildren();jobs.slice(0,state.libraryCount).forEach(job=>{const button=document.createElement('button');button.className='library-card';const thumbnail=document.createElement('div');thumbnail.className='library-thumb';const image=document.createElement('img');image.src=job.reference_url;image.alt=`Imagen de referencia de ${job.title}`;if(job.status==='complete'){const render=new Image();render.onload=()=>{image.src=render.src;image.alt=`Vista del modelo ${job.title}`};render.src=`/api/jobs/${job.id}/thumbnail`;}const badge=document.createElement('span');badge.className='badge';badge.textContent=statusName(job);thumbnail.append(image,badge);const title=document.createElement('h2');title.textContent=job.title;const details=document.createElement('p');const kind=document.createElement('span');kind.textContent=job.kind==='generate'?`Original · ${job.params.resolution}`:'Versión refinada';const date=document.createElement('span');date.textContent=new Intl.DateTimeFormat('es',{day:'numeric',month:'short'}).format(new Date(job.created*1000));details.append(kind,date);button.append(thumbnail,title,details);button.addEventListener('click',()=>selectJob(job.id));list.append(button)});$('library-empty').hidden=jobs.length>0;$('load-more').hidden=jobs.length<=state.libraryCount}
-async function refresh(){try{const data=await api('/api/jobs');state.jobs=data.jobs;if(!state.selected&&state.jobs.length)state.selected=state.jobs[0].id;renderRecent();renderSelected();if(state.view==='library')renderLibrary()}catch(error){notice(error.message,true)}}
+async function refresh(){try{const data=await api('/api/jobs');state.jobs=data.jobs;if(!state.initialized){if(!jobById(state.selected))state.selected=state.jobs[0]?.id??null;state.initialized=true}renderRecent();renderSelected();if(state.view==='library')renderLibrary()}catch(error){notice(error.message,true)}}
 async function refreshHardware(){try{state.status=await api('/api/models/status');$('hardware-label').textContent=`${state.status.devices.length} gráficas`;$('engine-settings').classList.toggle('ready',state.status.models.generator.ready)}catch{ $('hardware-label').textContent='Motor no disponible';$('engine-settings').classList.remove('ready')}}
 async function generate(event){event.preventDefault();if(!state.image)return;$('generate').disabled=true;try{const job=await api('/api/jobs',json('POST',{image_id:state.image.id,title:$('model-title').value,resolution:Number(document.querySelector('input[name=resolution]:checked').value),seed:Number($('seed').value),remove_background:$('remove-background').checked}));state.selected=job.id;state.compare=false;await refresh();$('model-field').scrollIntoView({block:'center',behavior:'instant'});notice('Generación añadida a la cola.')}catch(error){notice(error.message,true)}finally{$('generate').disabled=!state.image}}
 async function refine(){const job=currentJob();if(job?.status!=='complete')return;const button=$('refine-model');button.disabled=true;try{const created=await api(`/api/jobs/${job.id}/refine`,json('POST',{backend:$('refine-backend').value,tokens:Number($('refine-quality').value),alignment_degrees:Number($('refine-alignment').value),steps:Number($('refine-steps').value),transfer_materials:$('transfer-materials').checked,seed:job.params.seed??42}));state.selected=created.id;state.compare=false;await refresh();notice('La nueva versión está en cola. El original se conserva.')}catch(error){notice(error.message,true)}finally{button.disabled=false}}

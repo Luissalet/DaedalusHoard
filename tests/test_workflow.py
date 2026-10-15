@@ -53,6 +53,9 @@ def test_generation_refinement_preserves_original_and_versions(client):
     response=client.post('/api/jobs/'+original['id']+'/refine',json={'tokens':8192})
     refined=wait_job(client,response.json()['id'])
     assert refined['parent_id']==original['id']
+    assert refined['comparison_url']==f'/?job={refined["id"]}&compare=1'
+    assert original['comparison_url'] is None
+    assert original['viewer_url']==f'/?job={original["id"]}'
     assert client.get('/api/jobs/'+original['id']).json()['result']==original['result']
     versions=client.get('/api/jobs/'+refined['id']+'/versions').json()['versions']
     assert {job['id'] for job in versions}=={original['id'],refined['id']}

@@ -42,6 +42,8 @@ def public_job(job):
     if not job:
         raise HTTPException(404,'No se ha encontrado ese modelo.')
     job=dict(job)
+    job['viewer_url']=f'/?job={job["id"]}'
+    job['comparison_url']=f'/?job={job["id"]}&compare=1' if job.get('parent_id') else None
     job['reference_url']=f'/api/images/{job["image_id"]}/file'
     if job['result']:
         result=dict(job['result'])
