@@ -12,7 +12,7 @@
     "identify":{"service":["daedalus-hoard"], "title":["daedalus", "modelos 3d"]},
     "launch_hint":{"kind":"process", "executable":"{PYTHON}", "argv":["-m","daedalus","--no-browser"], "cwd":"{DAEDALUS_DIR}", "env":{"DAEDALUS_PORT":"8830"}, "readiness":{"url":"{APP_URL}/api/health","timeout_s":30}}
   },
-  "mcp":{"transport":"stdio", "command":"{PYTHON}", "args":["{DAEDALUS_DIR}/mcp_server.py"], "cwd":"{DAEDALUS_DIR}", "env":{"DAEDALUS_URL":"{APP_URL}","DAEDALUS_TOKEN_FILE":"{TOKEN_FILE}"}},
+  "mcp":{"transport":"stdio", "command":"{PYTHON}", "args":["{DAEDALUS_DIR}/mcp_server.py"], "env":{"DAEDALUS_URL":"{APP_URL}","DAEDALUS_TOKEN_FILE":"{TOKEN_FILE}"}},
   "notes":"Generation and refinement return asynchronous job IDs. Read actual completion with job_get. Refinement preserves the original and may reduce quality; it is optional. GLB uses meters and STL/PLY millimeters with explicit export scale. No automatic print repair, retopology or rigging. Text reasoning uses the shared Sparks through Faustus.",
   "x-family":{"copilot":true}
 }
