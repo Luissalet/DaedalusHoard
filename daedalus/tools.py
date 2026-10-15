@@ -8,7 +8,10 @@ TOOLS=[
       {'image_id':{'type':'string'},'title':{'type':'string'},'resolution':{'type':'integer','enum':[512,1024],'default':512},
        'seed':{'type':'integer','default':42},'remove_background':{'type':'boolean','default':True}},['image_id']),
  tool('model_refine','Create a separate refined version of a completed model. Improvement is not guaranteed; compare with the original.',
-      {**JOB,'tokens':{'type':'integer','enum':[2048,8192],'default':2048},'seed':{'type':'integer','default':42},
+      {**JOB,'backend':{'type':'string','enum':['detail','ultra'],'default':'detail'},
+       'tokens':{'type':'integer','enum':[2048,8192,32768],'default':2048},
+       'alignment_degrees':{'type':'integer','enum':[0,90,180,270],'description':'Rotate a COPY to match the reference front; output is returned to the original pose. Default:0 Detail,90 Ultra.'},
+       'steps':{'type':'integer','minimum':1,'default':50},'seed':{'type':'integer','default':42},
        'transfer_materials':{'type':'boolean','default':True}},['job_id']),
  tool('jobs_list','List persisted jobs and their actual results.'),
  tool('job_get','Read generation/refinement progress, files and geometry measurements.',JOB,['job_id']),
@@ -19,5 +22,5 @@ TOOLS=[
       {**JOB,'format':{'type':'string','enum':['glb','stl','ply'],'default':'glb'},'size_mm':{'type':'number','default':100},
        'full':{'type':'boolean','default':False}},['job_id']),
  tool('models_status','Read local weight availability and the actual four GPU inventory.'),
- tool('models_configure','Set the folder containing the generator/ and refiner/ weights; does not download or load a model.',
+ tool('models_configure','Set the folder containing generator/, refiner/ and optional ultra/ weights; does not download or load a model.',
       {'model_dir':{'type':'string'}},['model_dir'])]

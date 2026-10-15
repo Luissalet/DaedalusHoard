@@ -28,6 +28,7 @@ class Config:
             'refiner':['refiner/transformer/diffusion_pytorch_model.safetensors','refiner/vae/diffusion_pytorch_model.safetensors',
                        'refiner/image_encoder_1/model.safetensors','refiner/image_encoder_1/config.json',
                        'refiner/feature_extractor_1/preprocessor_config.json','refiner/scheduler/scheduler_config.json',
-                       'refiner/noise_scheduler/scheduler_config.json']}
+                       'refiner/noise_scheduler/scheduler_config.json'],
+            'ultra':['ultra/ultrashape_v1.pt','ultra/weights-proof.json']}
         return {name:{'ready':all((model_root/path).is_file() for path in paths),
                       'missing':[path for path in paths if not (model_root/path).is_file()]} for name,paths in files.items()}

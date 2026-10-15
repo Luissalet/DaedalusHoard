@@ -19,4 +19,11 @@ Refiner: VAST-AI/DetailGen3D revision `ff2fac7768babe768bb73d03e998f80a397a3454`
 - `refiner/scheduler/scheduler_config.json`
 - `refiner/noise_scheduler/scheduler_config.json`
 
-The tested local store keeps the upstream licenses and weight provenance proofs. Approximately 19 GB of files, plus the Python/CUDA runtime. Preparing the store uses hardlinks when the immutable source and destination are on the same volume; runtime reads only this own store. Outputs and peak RAM usage depend strongly on resolution. Weights are not committed to the application repository.
+Alternative refiner: project-linked `infinith/UltraShape` revision `5aeb21a7185d39f042d02b2695802f125a6f5159`.
+
+- `ultra/ultrashape_v1.pt` (7,366,231,254 bytes)
+- `ultra/weights-proof.json` (revision, SHA256 and source)
+
+The Ultra weight repository is tagged Apache-2.0 but names a Hunyuan3D-2.1 base, while the code repository has geographic restrictions. Preserve those distinct signals; see `ULTRA-PROVENANCE.md`. No unrestricted redistribution or legal clearance is claimed.
+
+The tested local store keeps the upstream licenses and weight provenance proofs. Approximately 26 GB of files including Ultra, plus the Python/CUDA runtime. Preparing the original store used hardlinks when the immutable source and destination were on the same volume; Ultra is a separate hash-verified download. Runtime reads only this own store. Outputs and peak RAM usage depend strongly on resolution. Weights are not committed to the application repository.

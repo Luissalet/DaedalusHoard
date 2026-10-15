@@ -6,15 +6,9 @@ The primary task is to import a reference image, generate a model, inspect it, o
 
 ## Direction contract
 
-FORM: seed key `f07c6bfe`, assigned direction6 from `concept-seed.mjs --scope direction --mode operate` in this build session. Execution is code-led, explicitly confirmed by Luis. No approved comp, QUALITY BAR card or generated critique-reference exists for this build; review uses the written contract and actual screenshots, without claiming measured comp fidelity.
+Execution is code-led, explicitly confirmed by Luis. The user pins the visual world to the existing Hoard family: vendored shared charcoal theme, serif headings, sans body, one turquoise accent, curled dragon with gold tool icon. Actual family icons (Vulcan, Prospero, Vitruvius) are the identity references. No new visual-world tournament or visual comp is requested. Earlier light inspection-bench direction is superseded by this explicit request.
 
-Audience: Luis using the local four-GPU workstation. Job: produce an editable/exportable model from one reference. Action: import, generate, inspect, optionally compare refinement, choose a version and export. Proof/content: actual persisted jobs, real generated GLBs and geometry/material controls. Constraints: preserve originals, explicit export dimensions, shared Hub leases, no automatic improvement or print-readiness promise.
-
-Assigned grounded direction6: a microscopy workbench, translated into a digital model inspection bench. The specimen is the actual3D model; preparation and variants stay alongside it. This is a functional organization, not a laboratory costume. A calm light interface suits the user's desktop workspace; the3D field is a separate neutral surface so silhouettes remain readable.
-
-Seven grounded candidates considered, in resonance order: CAD workbench, photographic contact sheet, architecture maquette catalogue, ceramic workshop trays, print proof sheet, microscopy inspection bench, audio production desk. The assigned sixth direction is retained. The strongest alternative was the familiar CAD workbench; it adds no reason to discard the assigned inspection emphasis.
-
-The dealt exposure-record direction can carry before/after layers but makes the continuous orbit view harder to understand: declined; retain its strict alignment between versions. The character catalogue can carry a finite library but introduces ranking and personal attributes that have no factual place here: declined; retain whole-cell library selection. Other decorative catalogue challengers do not improve audience identification or product clarity over the inspection bench: declined; retain unambiguous selected states without decorative motion.
+Audience: Luis at the local four-GPU workstation. Task: generate, inspect, optionally refine a preserved version, compare in linked orbit and export for games or printing. No automatic improvement or print-readiness claim. Preserve every generation, version, export, cancellation and library function. The model remains the main visual content. Refinement choices describe actual engines, token counts and alignment; all inference uses shared Hub leases.
 
 FIRST VIEWPORT: a slim product header, clear New/Library navigation, reference and generation controls at the left, a large usable3D viewport in the center and actual job/variant controls at the right. The empty state names the first action and shows no fabricated model. A populated state gives the actual model most of the space. Export and comparison remain findable without navigating away.
 

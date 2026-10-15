@@ -9,6 +9,36 @@ import traceback
 def progress(stage,value):
     print(json.dumps({'event':'progress','stage':stage,'progress':value}),flush=True)
 
+def align_refinement_input(spec):
+    if spec['kind']!='refine' or not spec.get('alignment_degrees',0):
+        return None
+    import hashlib
+    import numpy as np
+    import trimesh
+    alignment=trimesh.transformations.rotation_matrix(np.deg2rad(spec['alignment_degrees']),[0,1,0])
+    source=Path(spec['mesh'])
+    mesh=trimesh.load(source,force='mesh',process=False)
+    mesh.apply_transform(alignment)
+    aligned=Path(spec['output_dir'])/'aligned-source.glb'
+    mesh.export(aligned)
+    with source.open('rb') as stream:
+        digest=hashlib.file_digest(stream,'sha256').hexdigest()
+    (aligned.parent/'alignment.json').write_text(json.dumps({'degrees_y':spec['alignment_degrees'],
+        'matrix':alignment.tolist(),'original':str(source),'original_sha256':digest}))
+    spec['mesh']=str(aligned)
+    return alignment
+
+def restore_refinement_pose(folder,alignment):
+    if alignment is None:
+        return
+    import numpy as np
+    import trimesh
+    geometry=np.load(folder/'refined.npz')
+    vertices=trimesh.transform_points(geometry['vertices'],np.linalg.inv(alignment))
+    faces=geometry['faces']
+    np.savez_compressed(folder/'refined.npz',vertices=vertices,faces=faces)
+    trimesh.Trimesh(vertices=vertices,faces=faces,process=False).export(folder/'refined.glb')
+
 def prepare_input(spec):
     if spec['kind']!='generate':
         return
@@ -48,7 +78,7 @@ def attach_progress(engine,kind,resolution):
             progress({'structure':'building_structure','shape_512':'generating_shape','shape_1024':'adding_detail','texture':'generating_materials'}[data['stage']],
                      lo+(hi-lo)*data['step']/data['total'])
         elif name=='refine_step':
-            progress('refining_shape',.1+.55*data['step']/50)
+            progress('refining_shape',.1+.55*data['step']/data.get('total',50))
         elif name=='sdf_level':
             progress('decoding_mesh',.7+(.1 if data['resolution']==512 else 0))
         elif name=='geometry_decoded':
@@ -104,7 +134,9 @@ def publish(spec):
     return {'files':files,'metrics':metrics,'seed':spec.get('seed',42),'resolution':spec.get('resolution',512),
             'kind':spec['kind'],'materials':'transferred' if spec['kind']=='refine' and spec.get('transfer_materials',True) else 'generated' if spec['kind']=='generate' else 'none',
             'engine_seconds':result['seconds_total'],'memory':result.get('memory',[]),
-            'block_calls':result.get('block_calls',{}),'refiner_tokens':spec.get('tokens')}
+            'block_calls':result.get('block_calls',{}),'refiner_tokens':spec.get('tokens'),
+            'refiner_backend':spec.get('backend','detail') if spec['kind']=='refine' else None,
+            'alignment_degrees':spec.get('alignment_degrees',0),'refiner_steps':spec.get('steps',50) if spec['kind']=='refine' else None}
 
 def main():
     spec=json.loads(Path(sys.argv[1]).read_text(encoding='utf-8'))
@@ -116,10 +148,14 @@ def main():
         progress('loading_models',.01)
         if spec['kind']=='generate':
             from .geometry import generation as engine
+        elif spec.get('backend')=='ultra':
+            from .geometry import ultra_refinement as engine
         else:
             from .geometry import refinement as engine
+        alignment=align_refinement_input(spec)
         attach_progress(engine,spec['kind'],spec.get('resolution',512))
         engine.run(spec)
+        restore_refinement_pose(folder,alignment)
         import gc
         import torch
         gc.collect()

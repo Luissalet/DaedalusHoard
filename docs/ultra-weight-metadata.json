@@ -1,0 +1,66 @@
+{
+  "_id": "694d8e2c329f4825322488e3",
+  "id": "infinith/UltraShape",
+  "private": false,
+  "pipeline_tag": "image-to-3d",
+  "tags": [
+    "image-to-3d",
+    "arxiv:2512.21185",
+    "base_model:tencent/Hunyuan3D-2.1",
+    "base_model:finetune:tencent/Hunyuan3D-2.1",
+    "license:apache-2.0",
+    "region:us"
+  ],
+  "downloads": 0,
+  "likes": 120,
+  "modelId": "infinith/UltraShape",
+  "author": "infinith",
+  "sha": "5aeb21a7185d39f042d02b2695802f125a6f5159",
+  "lastModified": "2026-01-31T16:59:23.000Z",
+  "gated": false,
+  "disabled": false,
+  "model-index": null,
+  "config": {},
+  "cardData": {
+    "license": "apache-2.0",
+    "base_model": [
+      "tencent/Hunyuan3D-2.1"
+    ],
+    "pipeline_tag": "image-to-3d"
+  },
+  "siblings": [
+    {
+      "rfilename": ".gitattributes",
+      "blobId": "a6344aac8c09253b3b630fb776ae94478aa0275b",
+      "size": 1519
+    },
+    {
+      "rfilename": "README.md",
+      "blobId": "fa16ad8e554ac19571c1d812109588c3376d2a11",
+      "size": 2980
+    },
+    {
+      "rfilename": "ultrashape_v1.pt",
+      "blobId": "1d480d260bc150cfb3e84e118ab4df8d0fca918c",
+      "size": 7366231254,
+      "lfs": {
+        "sha256": "c96ae010c4169597fd0006dcb08056bf6104a1fca249b10fed7ddded324c3f0f",
+        "size": 7366231254,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "vae/vae_step=15000.ckpt",
+      "blobId": "42d0de6a9d8f66c000f05e71c79d59778cf49c3a",
+      "size": 655653780,
+      "lfs": {
+        "sha256": "167d6afa1f0f0c6ffbb2755af8d2ba85248076e1c936d275d0aee8d2636ebd12",
+        "size": 655653780,
+        "pointerSize": 134
+      }
+    }
+  ],
+  "spaces": [],
+  "createdAt": "2025-12-25T19:19:08.000Z",
+  "usedStorage": 8021885034
+}

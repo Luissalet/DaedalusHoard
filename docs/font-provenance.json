@@ -1,0 +1,29 @@
+[
+  {
+    "path": "Cinzel.ttf",
+    "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/cinzel/Cinzel%5Bwght%5D.ttf",
+    "git_blob": "d218a0b9c8879fd5a708872cc0ef357e507b35ca",
+    "sha256": "f4d83d34d1f6c741193e4acf4b3dff9531e5a67b6aa65228d00a7db72a4e0f34"
+  },
+  {
+    "path": "OFL-Cinzel.txt",
+    "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/cinzel/OFL.txt",
+    "git_blob": "afdfd1412be934fe7cc40a5a2c5e06e354c44dcf",
+    "sha256": "f2b3029aba64c378bf0963b62945eee15e564fe4330b934c8f2eb058282b5e83"
+  },
+  {
+    "path": "SourceSans3-Regular.ttf",
+    "source": "existing family licensed font",
+    "sha256": "4644c81b86ec9caaa76b634889968ed3c4f4f52f054855933acc7c2b21e53b0f"
+  },
+  {
+    "path": "SourceSans3-Semibold.ttf",
+    "source": "existing family licensed font",
+    "sha256": "a3f4f8dcf343a8f24dc61951de93f3ba1558b15cd250ba24af8a40e957081b7d"
+  },
+  {
+    "path": "OFL-SourceSans3.txt",
+    "source": "existing family licensed font",
+    "sha256": "5d8778c6a43dc2fee25e81ee6ff07e52c6f238473b491cda47f7117a2ce9d467"
+  }
+]

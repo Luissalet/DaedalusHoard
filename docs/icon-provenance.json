@@ -1,0 +1,11 @@
+{
+  "tool": "OpenAI built-in image generation",
+  "prompt_file": "icon-prompt.txt",
+  "references": [
+    "Vulcan hoard.png",
+    "Prosperos hoard.png",
+    "Vitruvius hoard.png"
+  ],
+  "output": "app-icon.png",
+  "transparent_background": false
+}

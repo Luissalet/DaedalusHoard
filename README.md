@@ -4,15 +4,17 @@ Generación local de modelos 3D desde imágenes, con una pasada de refinado opci
 
 Importa PNG, JPG o WebP, genera a 512 o 1024 y conserva el modelo completo. El visor permite inspeccionar materiales o geometría, comparar un refinado con su original con cámaras enlazadas y descargar GLB, STL o PLY indicando el tamaño del lado mayor. La biblioteca conserva trabajos, errores y versiones entre sesiones. Cancelar un trabajo no borra sus originales.
 
-El refinado crea otra geometría y puede perder huecos o detalles. En la prueba mecánica del 15-10-2026, DetailGen3D no superó al original de TRELLIS.2, tampoco con 8192 latentes. Está disponible para comparar, sin sustituir el original. Los materiales del refinado se transfieren de la generación si se selecciona «Conservar aspecto»; no son una nueva síntesis de texturas. Las mallas abiertas requieren preparación antes de imprimir; no hay reparación, retopología ni rigging automáticos.
+El refinado crea otra geometría y puede perder huecos o detalles. Permite elegir UltraShape o DetailGen3D. UltraShape admite 2.048, 8.192 o 32.768 latentes; DetailGen mantiene 2.048 y 8.192. Los pasos y el giro del frente se pueden ajustar: se alinea una copia para la referencia y la salida vuelve a la orientación original. Los trabajos anteriores mantienen sus parámetros. En el ejemplo mecánico, DetailGen sigue perdiendo huecos incluso con el frente corregido. UltraShape a 8.192 conserva mejor la estructura y limpia algunas superficies, pero también cambia detalles y profundidad; no se ha acreditado una mejora global sobre el original. Las pasadas se conservan para elegir por comparación. Los materiales del refinado se transfieren de la generación si se selecciona «Conservar aspecto»; no son una nueva síntesis de texturas. Las mallas abiertas requieren preparación antes de imprimir; no hay reparación, retopología ni rigging automáticos.
 
 ## Ejecución
 
 En este equipo, abre `launch.cmd` o Daedalus en Hoard Hub. Puerto predeterminado: http://127.0.0.1:8830. El entorno propio está en `D:/LocalAI/HoardStorage/daedalus-runtime`; los pesos, en `D:/LocalAI/HoardStorage/daedalus-models`. La carpeta puede cambiarse en «4 gráficas». El programa no descarga pesos al generar.
 
-El motor incorporado vive en `daedalus/geometry`. No inicia ComfyUI ni el programa de otro proyecto. Requiere las cuatro NVIDIA del equipo: físicas 1, 2 y 3 (16 GB) y 0 (12 GB). Distribuye las capas del generador en 8/8/8/6 y las del refinador en 6/6/6/6. Es reparto secuencial de capas; no suma las memorias como si fueran una tarjeta ni promete acelerar frente a una GPU mayor. El Hub concede los cuatro leases antes de cargar. Si están ocupadas, espera y se puede cancelar. El LLM global de las Sparks sigue siendo el servicio de Faustus y del copilot común.
+El motor incorporado vive en `daedalus/geometry`. No inicia ComfyUI ni el programa de otro proyecto. Requiere las cuatro NVIDIA del equipo: físicas 1, 2 y 3 (16 GB) y 0 (12 GB). Distribuye las capas del generador en 8/8/8/6 y las de DetailGen en 6/6/6/6. UltraShape reparte 21 bloques según el peso de sus expertos, en 13/4/2/2; la consulta geométrica posterior utiliza las cuatro tarjetas. Es reparto secuencial de capas; no suma las memorias como si fueran una tarjeta ni promete acelerar frente a una GPU mayor. El Hub concede los cuatro leases antes de cargar. Si están ocupadas, espera y se puede cancelar. El LLM global de las Sparks sigue siendo el servicio de Faustus y del copilot común.
 
 Para preparar otro entorno, instala Python 3.13, PyTorch CUDA 12.8 y las dependencias de `requirements.txt` (el índice oficial de PyTorch debe proporcionar los paquetes `+cu128`). `hoard-link` es la biblioteca compartida de la familia. Coloca los archivos con la estructura descrita en `docs/MODELS.md`. `tools/prepare_models.py` es una ayuda de instalación desde los archivos locales de investigación de este equipo; no forma parte de la ejecución del motor.
+
+La interfaz utiliza el tema oscuro común de los Hoards, Cinzel y Source Sans 3 autoalojadas y el icono de dragón turquesa con cubo y calibre dorados. La biblioteca, las versiones, el visor y las exportaciones siguen disponibles también en móvil.
 
 ## Archivos y unidades
 
@@ -26,6 +28,8 @@ El tamaño no se deduce de una imagen. El lado mayor indicado al exportar se esc
 
 ## Verificación
 
-Pruebas CPU: `python -m pytest`. Cubren conservación de versiones, unidades exportadas, cancelación y eventos tardíos, recuperación, instancia única, paridad API/herramientas y operaciones geométricas. Las pruebas reales de generación/refinado por MCP y las comprobaciones de navegador tienen sus recibos en las carpetas privadas de investigación de la tarea Ágora622; no se ejecutan durante la suite CPU. Los resultados y límites del experimento comparativo anterior están en `docs/EXPERIMENT.md`.
+Pruebas CPU: `python -m pytest`. Cubren conservación de versiones, unidades exportadas, cancelación y eventos tardíos, recuperación, instancia única, paridad API/herramientas y operaciones geométricas. Las pruebas reales de generación/refinado por MCP y las comprobaciones de navegador tienen sus recibos en las carpetas privadas de investigación de la tarea Ágora622; no se ejecutan durante la suite CPU. Los resultados y límites de los experimentos están en `docs/EXPERIMENT.md`. El reparto de Ultra se contrastó numéricamente en FP32 entre una tarjeta y cuatro: error relativo L2 8,97×10⁻⁷. Eso valida el reparto del motor propio, no una mejora de calidad ni una equivalencia universal con otros motores.
+
+Los pesos de Ultra figuran como Apache-2.0, pero declaran una base Hunyuan3D-2.1 y el repositorio de referencia tiene restricciones geográficas. Esa discrepancia está conservada en `docs/ULTRA-PROVENANCE.md`; no se afirma permiso de redistribución sin restricciones.
 
 Código GPL-3.0; los pesos y componentes tienen sus propias licencias. Véase `THIRD_PARTY.md` antes de redistribuirlos.

@@ -31,7 +31,10 @@ class GenerateInput(BaseModel):
     remove_background:bool=True
 
 class RefineInput(BaseModel):
-    tokens:Literal[2048,8192]=2048
+    backend:Literal['detail','ultra']='detail'
+    tokens:Literal[2048,8192,32768]=2048
+    alignment_degrees:Literal[0,90,180,270]|None=None
+    steps:int=Field(default=50,ge=1)
     transfer_materials:bool=True
     seed:int=Field(default=42,ge=0,le=2**63-1)
 
@@ -70,6 +73,10 @@ def create_app(data_dir=None,runner=None):
     app.state.config=config
     app.state.store=store
 
+    @app.get('/app-icon.png',include_in_schema=False)
+    def app_icon():
+        return FileResponse(ROOT/'app-icon.png')
+
     def import_image(content,name):
         identity=uuid.uuid4().hex
         try:
@@ -102,9 +109,15 @@ def create_app(data_dir=None,runner=None):
         if not parent or parent['status']!='complete':
             raise HTTPException(409,'Elige una generación terminada para crear una versión refinada.')
         request=RefineInput.model_validate(body)
-        if runner is None and not config.model_status()['refiner']['ready']:
+        if request.backend=='detail' and request.tokens==32768:
+            raise HTTPException(400,'DetailGen admite las pasadas de 2048 u 8192 latentes.')
+        component='ultra' if request.backend=='ultra' else 'refiner'
+        if runner is None and not config.model_status()[component]['ready']:
             raise HTTPException(409,'No se encuentran todos los pesos del refinador. Revisa la carpeta de modelos.')
-        job=store.create('refine',parent['image_id'],parent['title'],request.model_dump(),parent_id=identity)
+        params=request.model_dump()
+        if params['alignment_degrees'] is None:
+            params['alignment_degrees']=90 if request.backend=='ultra' else 0
+        job=store.create('refine',parent['image_id'],parent['title'],params,parent_id=identity)
         app.state.manager.enqueue(job['id'])
         return public_job(job)
 

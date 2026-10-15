@@ -1,38 +1,53 @@
 ---
 name: Daedalus's Hoard
-description: Local image-to-3D generation and version inspection.
+description: Local image-to-3D generation, comparison and retained versions.
 colors:
-  accent: "#315e47"
-  ink: "#26332b"
-  muted: "#58675d"
-  canvas: "#f4f4ef"
-  surface: "#fffefa"
-  line: "#d5dacf"
-  control: "#839488"
-  field: "#dce0d7"
-  danger: "#943b32"
+  accent: "#73d1be"
+  accent-strong: "#9bdfd1"
+  accent-dim: "#54a895"
+  accent-ink: "#10221e"
+  accent-soft: "rgba(115,209,190,.14)"
+  accent-line: "rgba(115,209,190,.38)"
+  canvas: "#171919"
+  sunken: "#121414"
+  surface: "#1e2121"
+  elevated: "#282b2c"
+  hover: "#303334"
+  line: "#3a3d3e"
+  control: "#5e6364"
+  ink: "#e1eaec"
+  muted: "#b4bcbe"
+  dim: "#9ba4a6"
+  field: "#222a2b"
+  danger: "#f09086"
 typography:
+  brand:
+    fontFamily: "Cinzel, 'Iowan Old Style', Charter, Georgia, 'Liberation Serif', 'Noto Serif', 'Times New Roman', serif"
+    fontSize: "19px"
+    fontWeight: 600
+    letterSpacing: "0.01em"
   headline:
-    fontFamily: "Segoe UI, system-ui, sans-serif"
+    fontFamily: "Cinzel, 'Iowan Old Style', Charter, Georgia, 'Liberation Serif', 'Noto Serif', 'Times New Roman', serif"
     fontSize: "23px"
     fontWeight: 600
     lineHeight: 1.25
     letterSpacing: "-0.025em"
   title:
-    fontFamily: "Segoe UI, system-ui, sans-serif"
+    fontFamily: "Cinzel, 'Iowan Old Style', Charter, Georgia, 'Liberation Serif', 'Noto Serif', 'Times New Roman', serif"
     fontSize: "15px"
     fontWeight: 600
     lineHeight: 1.4
   body:
-    fontFamily: "Segoe UI, system-ui, sans-serif"
+    fontFamily: "'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans', 'Liberation Sans', Arial, sans-serif"
     fontSize: "14px"
+    fontWeight: 400
     lineHeight: 1.55
   label:
-    fontFamily: "Segoe UI, system-ui, sans-serif"
+    fontFamily: "'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans', 'Liberation Sans', Arial, sans-serif"
     fontSize: "12px"
     fontWeight: 600
   small:
-    fontFamily: "Segoe UI, system-ui, sans-serif"
+    fontFamily: "'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans', 'Liberation Sans', Arial, sans-serif"
     fontSize: "12px"
     lineHeight: 1.55
 rounded:
@@ -40,6 +55,8 @@ rounded:
   control: "5px"
   overlay: "6px"
   field: "7px"
+  upload: "8px"
+  dialog: "10px"
 spacing:
   tight: "7px"
   control: "10px"
@@ -49,9 +66,15 @@ spacing:
 components:
   button-primary:
     backgroundColor: "{colors.accent}"
-    textColor: "#fff"
+    textColor: "{colors.accent-ink}"
     rounded: "{rounded.control}"
     padding: "11px 15px"
+  button-primary-hover:
+    backgroundColor: "{colors.accent-strong}"
+    textColor: "{colors.accent-ink}"
+  button-primary-active:
+    backgroundColor: "{colors.accent-dim}"
+    textColor: "{colors.accent-ink}"
   button-secondary:
     backgroundColor: "{colors.surface}"
     textColor: "{colors.ink}"
@@ -62,6 +85,7 @@ components:
     textColor: "{colors.ink}"
     rounded: "{rounded.control}"
     padding: "7px 9px"
+    height: "36px"
   input:
     backgroundColor: "{colors.surface}"
     textColor: "{colors.ink}"
@@ -70,134 +94,150 @@ components:
   model-field:
     backgroundColor: "{colors.field}"
     rounded: "{rounded.field}"
+  version-selected:
+    backgroundColor: "{colors.accent-soft}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.control}"
+    padding: "9px 10px"
 ---
 
 # Design System: Daedalus's Hoard
 
 ## Overview
 
-**Creative North Star: "The Model Inspection Bench"**
+**Creative North Star: "The Hoard Model Workbench"**
 
-The built interface translates the assigned microscopy workbench direction into a quiet digital inspection bench. Warm paper surfaces, muted green controls and a separate neutral model field keep the specimen legible. Preparation, inspection and preserved versions are visible as working tools rather than decorative laboratory imagery.
+The implemented world is the existing Hoard family: shared charcoal surfaces, Cinzel headings, Source Sans 3 controls and Daedalus's turquoise accent. Luis explicitly requested this family style and icon, superseding the earlier light inspection-bench direction. The north star below describes that implemented family workbench; it does not establish a new identity or an approved naming preference.
 
-The system is compact and task oriented. Small sentence-case headings, plain Spanish labels, fine dividers and restrained rounding give the model more visual weight than the surrounding controls. The comparison view uses equal adjacent panes and linked camera movement, with a common clay mode for judging geometry. Color mode shows the actual model materials.
+A compact, flat workspace surrounds a distinct model field. Preparation, retained versions, refinement and export stay legible around the actual geometry. Equal comparison panes and linked orbit let the user inspect an original beside a later version; common clay material supports shape comparison, while color mode restores the actual model materials.
 
-This is a record of the built client and the existing desktop/mobile screenshots, following a confirmed code-led build. The North Star names the implemented direction; it is not a newly approved brand identity. No approved comp, QUALITY BAR card or generated critique-reference exists, so this document makes no comp-fidelity claim. Daedalus remains an implementation name.
+This record follows the finished client and the desktop/mobile captures. Construction was explicitly code-led: no approved visual comp, QUALITY BAR card or generated critique-reference exists, and no comp-fidelity claim is made. The latest finish pass reported SHIP at its inspected scope; the detector ran DEGRADED with parsers absent. Those are evidence limits, not additional design rules.
 
 **Key Characteristics:**
-- Warm light surfaces with a muted green action accent.
-- A distinct neutral field for inspecting real geometry.
-- Compact, sentence-case utility typography.
-- Flat panels and fine structural dividers.
-- Aligned original/refined comparison with preserved version selection.
+
+- Inherited charcoal surfaces with a single turquoise action accent.
+- Self-hosted Cinzel headings and Source Sans 3 operational text.
+- The supplied curled dragon, gold cube and caliper icon as family identity.
+- Flat persistent panels, fine dividers and restrained corner radii.
+- Actual model geometry, aligned comparison and separately retained versions.
 
 ## Colors
 
-The palette is low-chroma and slightly green, with warmer control surfaces and a cooler, denser model field. Frontmatter values reproduce the current stylesheet; descriptive names explain their use.
+The palette combines the shared neutral charcoal layers with one turquoise accent. The frontmatter records effective values after the app overrides the vendored theme; it does not import unrelated Hoard palettes.
 
 ### Primary
-- **Bench Green** (`accent`): generation and download actions, active navigation, checked controls, focus outlines and the product line mark.
+
+- **Daedalus Turquoise** (`accent`): brand text, primary actions, active navigation, focus, checked controls and live progress.
+- **Light Turquoise / Deep Turquoise** (`accent-strong`, `accent-dim`): primary hover and active states; the light tone also identifies checked resolution text.
+- **Dark Accent Ink** (`accent-ink`): readable text on filled turquoise actions.
+- **Turquoise Wash / Turquoise Boundary** (`accent-soft`, `accent-line`): selected versions, pressed controls and radio selection without filling entire panels with accent.
 
 ### Neutral
-- **Graphite Green** (`ink`): ordinary text, form values and section headings.
-- **Muted Sage Ink** (`muted`): helper copy, metadata, unselected navigation and secondary icons.
-- **Warm Paper** (`canvas`): the continuous workspace background.
-- **Ivory Surface** (`surface`): header, inputs, buttons and transient panels.
-- **Fine Sage Divider** (`line`): panel boundaries and quiet control borders.
-- **Control Sage** (`control`): input outlines and the upload boundary, stronger than structural dividers.
-- **Inspection Grey** (`field`): the model viewing field, keeping silhouettes separate from the controls.
 
-### Feedback
-- **Muted Brick** (`danger`): error text and error notices. Status is also expressed in words, never only through hue.
+- **Deep Charcoal / Sunken Charcoal** (`canvas`, `sunken`): continuous workspace and reference/thumbnail wells.
+- **Control Charcoal / Elevated Charcoal / Hover Charcoal** (`surface`, `elevated`, `hover`): header and fields, temporary surfaces, and hover response.
+- **Fine Divider / Control Outline** (`line`, `control`): structural boundaries and stronger field outlines.
+- **Pale Ink / Muted Ink / Dim Ink** (`ink`, `muted`, `dim`): primary text, supporting copy and placeholder/icon detail.
+- **Inspection Charcoal** (`field`): the model field, distinct from the surrounding controls.
+- **Error Coral** (`danger`): error text and error notices; an error notice uses dark ink and a written message.
 
-**The Specimen Field Rule.** Keep the model field distinct from the paper control surfaces so the object remains the primary visual evidence.
+**The Family Surface Rule.** Use the inherited charcoal layers and the app accent for controls; preserve the model field as a distinct inspection surface.
+
+The gold details belong to the supplied brand artwork, not a second action accent. Sidecar tonal ramps are synthesized inspection aids, not additional implemented palette tokens.
 
 ## Typography
 
-**Body and UI Font:** Segoe UI, with system-ui and sans-serif fallbacks.
+**Display / Heading Font:** Cinzel with the inherited serif fallback stack.
 
-**Character:** A practical Windows utility face at compact sizes. This build has no separate editorial or display face; the operational heading is not a display-type identity to copy into future promotional surfaces.
+**Body / Control Font:** Source Sans 3 with the inherited sans-serif fallback stack.
+
+Both families are self-hosted under `client/vendor/fonts/` with swap loading. Cinzel supplies the family character on brand, page and section headings; Source Sans 3 keeps fields, navigation, model titles and metadata compact. There is no separate hero display scale or implemented monospace UI role.
 
 ### Hierarchy
-- **Headline:** The frontmatter headline role is used for the main page heading; it reduces to (22px) in the phone preparation panel.
-- **Title:** The title role distinguishes section headings without large jumps in scale.
-- **Body:** The body role covers form values and ordinary copy. Paragraphs use the documented body line-height; controls retain their own compact line-height (1.3).
-- **Label:** The label role names fields and controls in sentence case, with no tracking or uppercase decoration.
-- **Small:** The small role covers instructions and version descriptions. Secondary metadata also uses (11px); phone viewer metadata reaches (10px), an incumbent detail rather than a new minimum-size standard.
 
-**The Task Label Rule.** Use short, sentence-case labels that name the action, object or state; do not introduce slogans or ornamental eyebrows.
+- **Brand:** The frontmatter brand role is used in the desktop header; it becomes (16px) on phones, where the family suffix is hidden.
+- **Headline:** The page heading uses the headline role and reduces to (22px) in phone preparation.
+- **Title:** Section headings use the title role. Empty-model and dialog headings have local larger variants; these do not create another universal display ramp.
+- **Body:** The body role covers ordinary text and field values. Paragraphs use the body line height; buttons use a compact line height (1.3).
+- **Label:** Visible field names use the label role; controls remain sentence case.
+- **Small:** Helpers use the small role. Existing secondary metadata also uses (11px), with some phone labels reaching (10px); this is recorded as incumbent density, not a recommended readability floor.
+
+**The Task Label Rule.** Use short, sentence-case Spanish labels that name an action, object or state; Cinzel provides the family heading character without slogans or ornamental eyebrows.
 
 ## Layout
 
-The desktop workbench is a three-column grid: preparation (276px), a flexible inspection column with a (300px) minimum, and results (258px). The entire workspace is centered and capped at (1920px). Above (1500px), the side columns become (300px) and (280px), with a (400px) inspection minimum. The header is (72px) tall.
+The desktop workbench is a centered three-column grid capped at (1920px): preparation (276px), a flexible inspection column with a (300px) minimum, and results (258px). At (1500px) and above, the side columns become (300px) and (280px), with a (400px) inspection minimum. The header is (72px) tall. This records the existing workbench rather than prescribing a three-column template for all future screens.
 
-At widths up to (1150px), results become a three-column strip below preparation and inspection; recent items are omitted from that strip while the full library remains available. At widths up to (700px), the header becomes (64px), the workbench stacks in source order, recent items return, and the results sections regain horizontal separators. The model field is (440px) high on phones, retaining side-by-side comparison. Above phone width the inspection area sticks to the viewport and uses its available height, with a (590px) minimum inspection region.
+At (1150px) and below, results move into a three-column strip under preparation and inspection; Recents occupies a full row and remains available. At (700px) and below, controls stack in source order, the header becomes (64px), the family suffix and hardware text are abbreviated, and viewer actions may wrap. Results regain horizontal section dividers. Phone model fields are (440px) high and comparison keeps equal side-by-side panes. Above phone width the inspection region is sticky with viewport-relative height and a (590px) minimum.
 
-Spacing is compact around controls and more generous between tasks. The reusable rhythm is captured in the frontmatter; preparation and results use roughly one inset around their contents, and section boundaries use the section gap. The library uses a separate centered container capped at (1460px), an automatic grid with a (230px) minimum card width, and two columns on phones. This documents existing surfaces, not a mandatory three-column template for every future view.
+The spacing vocabulary is compact around controls and wider between tasks. The library is separately centered, capped at (1460px), and uses an automatic grid with a (230px) minimum card width; phones use two columns, stacked metadata and vertical filters. Preparation, versions, refinement, export and library remain accessible at phone widths.
 
 ## Elevation & Depth
 
-The ordinary workspace is flat. Fine borders and differences in surface tone separate sections; library items do not float inside raised cards. Shadows are reserved for a progress panel over the model field, a floating notice and the settings dialog. Actual model contact shading belongs to the viewer and is not a UI card-shadow rule.
+Persistent panels are flat. Charcoal tone changes and fine borders supply structure; library cards have no floating outer shell. Shadows belong to transient overlapping progress, notices and the settings dialog. Actual model contact shading is a viewer effect, not a card elevation style.
 
 ### Shadow Vocabulary
-- **Progress overlay** (`0 7px 22px rgba(33,50,36,.12)`): lifts live progress over the model field.
-- **Notice** (`0 6px 24px rgba(24,44,28,.2)`): separates a transient message from the page beneath it.
-- **Dialog** (`0 20px 70px rgba(28,43,31,.2)`): establishes the modal settings layer, paired with a translucent backdrop.
+
+- **Progress overlay** (`0 7px 22px rgba(0,0,0,.3)`): live progress over the model field.
+- **Notice** (`0 6px 24px rgba(0,0,0,.3)`): a transient message above the page.
+- **Dialog** (`0 20px 70px rgba(0,0,0,.4)`): settings modal, paired with a black half-opacity backdrop.
 
 **The Flat Workspace Rule.** Keep persistent panels flat; use elevation when a temporary surface overlaps the work.
 
 ## Shapes
 
-Controls use gently curved corners, with smaller radii on specimen labels and larger radii on model fields and overlays. Single-pixel borders carry structure. The upload area has a dashed outline and slightly softer corners (8px); the dialog is rounder again (10px). These two container-specific treatments do not create a universal pill or card system. Circular shapes are limited to the small status indicator. Icons are simple stroked SVGs.
+Controls use gently curved corners, smaller label corners and slightly softer model-field corners. Single-pixel lines carry structure. Upload wells have a dashed boundary; the modal uses the largest recorded corner radius. These container treatments do not imply a universal pill or raised-card system. The small hardware status indicator is circular. Operational icons are inline stroked SVGs; the brand uses the supplied raster artwork, showing a curled dragon around a gold cube and caliper.
 
 ## Components
 
 ### Buttons
 
-Quiet, compact rectangles make action priority explicit.
+Compact rectangular controls establish a clear action order.
 
-- **Primary:** Bench Green with white text, semibold weight, the control radius and primary padding from the frontmatter. Hover deepens to (#234b34); active deepens further to (#173a25).
-- **Secondary:** Ivory Surface, Graphite Green text and a Control Sage outline. Hover uses a light sage fill (#e9eee4) and the accent border.
-- **Quiet:** A smaller surface control with a Fine Sage Divider border; hover and pressed state use a sage fill (#e2ebde) and stronger border (#92a48f).
-- **Icon:** A compact square (32px), transparent at rest, with a sage hover fill and an inline stroked SVG.
-- **Text:** A small green action without a filled container; hover underlines its label.
-- **Focus / disabled:** Interactive elements use a visible accent outline (2px) offset by (3px). Disabled buttons use half opacity and the default cursor. Color transitions last (.18s), and the reduced-motion preference removes transitions.
+- **Primary:** Turquoise fill with Dark Accent Ink, semibold text and the frontmatter padding/radius. Hover uses Light Turquoise and active uses Deep Turquoise.
+- **Secondary:** Control Charcoal, Pale Ink and a stronger outline. Hover uses Hover Charcoal and the accent border.
+- **Quiet:** A smaller control with a fine divider border; hover and pressed state use Turquoise Wash and Turquoise Boundary. Minimum height is (36px).
+- **Icon:** Transparent at rest with a Hover Charcoal response, inline SVG and a final minimum target of (40px) in each dimension.
+- **Text:** A small turquoise action without a filled container; hover underlines the label.
+- **Focus / disabled:** Interactive elements have an accent outline (2px) offset by (3px). Disabled buttons use half opacity and a default cursor. State transitions last (.18s); reduced motion removes transitions.
 
 ### Chips
 
-The library status badge is a read-only label over the thumbnail: Ivory Surface, compact text (11px), label-radius corners and padding (4px 7px). It is not a filter chip. On phones it uses (10px) text to fit the existing cards.
+Library status badges are read-only labels over thumbnails, using Control Charcoal, Pale Ink and compact rounded corners. Padding is (4px 7px), with (11px) text, reduced to (10px) in the incumbent phone cards. They are status labels, not action filters.
 
 ### Cards / Containers
 
-Library cards are whole-cell buttons with no outer border or shadow. Their thumbnail is the bounded visual surface, with field-radius corners and a muted neutral fill. Titles sit beneath the thumbnail; status and date remain secondary. Hover enlarges only the contained image slightly (1.025) over (.2s), without lifting the card. The progress panel is the exception for overlapping content, as documented under Elevation & Depth.
+Library cards are whole-cell buttons with no outer border, fill or shadow. Their sunken thumbnail is the bounded visual surface, with the title and secondary state/date below it. Hover scales only the contained image (1.025) over (.2s); reduced motion removes the transition. Use actual model thumbnails when available and the selected reference while a thumbnail is unavailable. An empty upload preview is hidden until a reference exists; it is not a broken-image state to reproduce.
 
 ### Inputs / Fields
 
-Ivory fields use Graphite Green values, Control Sage borders, the control radius and input padding from the frontmatter. Labels sit above rather than inside the value. Focus uses the shared accent outline. Resolution uses a two-part native radio group: the chosen option has a pale green fill (#e1ebdf), darker text (#244b34) and an inset accent outline. Checkboxes retain native behavior with the accent color. Export dimensions display their unit beside the numeric input.
+Control Charcoal fields use Pale Ink, Control Outline borders and visible labels above values. Focus follows the shared accent outline. The two-part resolution radio group uses Turquoise Wash, Light Turquoise text and an inset accent line for the checked option. Checkboxes retain native behavior with the accent color. Export size shows its unit beside the numeric input. Engine parameters are available in small native details disclosures.
 
 ### Navigation
 
-The header contains plain text buttons. Active navigation gains green text, semibold weight and a bottom rule (2px); inactive navigation is muted. The active view is also exposed through `aria-current`. Phone navigation remains visible while the family suffix and hardware text are abbreviated. The brand line mark is an outlined cube; the separately supplied Faustus launcher follows the shared Hoard family identity rather than establishing another local button style.
+The header uses plain sans-serif view buttons. Active navigation gains turquoise text, semibold weight and a bottom rule (2px), with `aria-current` exposing the active view. Phone navigation remains visible while the brand suffix and hardware text abbreviate. The brand image is (44px) square on desktop and (36px) on phones. The shared Faustus launcher retains its family mark and accessible name rather than acquiring another local identity.
 
 ### Version Inspection
 
-Version entries are full-width, left-aligned buttons with a compact name and secondary description. Selection uses a pale sage fill (#e2ebde), a fine boundary (#a7b5a1) and `aria-pressed`. The model field has equal flex panes in comparison mode, a fine central divider and small ivory labels identifying original and refined geometry. Camera changes are linked. Entering comparison selects the common geometry material, while the material control can restore color. The original and later versions remain separately selectable.
+Versions are full-width, left-aligned buttons with a compact name and a supporting engine/state description. Selection uses Turquoise Wash, Turquoise Boundary and `aria-pressed`. Comparison divides the model field into equal flex panes with a fine central line and small elevated-charcoal labels. Camera changes are linked. Entering comparison selects common clay geometry; the material control can restore color. Original and later versions remain separately selectable, with engine/token details named rather than implying a quality ranking.
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** keep the model field visually distinct from the control surfaces.
-- **Do** use sentence-case Spanish labels and compact, visible field names.
-- **Do** show version selection through fill, border and a semantic pressed state.
-- **Do** compare original and refined geometry in aligned panes with linked orbit.
-- **Do** retain visible keyboard focus and honor reduced motion.
-- **Do** keep export units visible beside the entered dimension.
+
+- **Do** load the shared Hoard theme before the app stylesheet and retain the local font assets.
+- **Do** use the supplied app icon for the brand and the shared Faustus launcher for copilot access.
+- **Do** keep the model field distinct, compare aligned versions and retain the original.
+- **Do** expose selected state through fill, border and semantic state attributes.
+- **Do** retain visible keyboard focus, native control behavior and reduced motion.
+- **Do** keep export units beside the entered dimension and keep library access visible on phones.
 
 ### Don't:
-- **Don't** add decorative laboratory imagery to express the inspection-bench direction.
-- **Don't** raise every persistent panel with a shadow.
-- **Don't** use a refined model's visual prominence to imply it is automatically better or print-ready.
-- **Don't** replace the original with a refined result or label a synthetic specimen as an actual result.
-- **Don't** promote the current small metadata sizes or utility system font into a new display-type standard.
 
-<!-- Evidence: client/style.css, client/index.html, client/app.js, .impeccable/review/desktop.png and mobile.png. Product and direction context: PRODUCT.md and .impeccable/surfaces/workbench.md. Sidecar tonal ramps are synthesized panel aids, not additional implemented palette tokens. -->
+- **Don't** reintroduce the superseded light paper palette or replace the family icon with a generic cube mark.
+- **Don't** raise every persistent panel with a shadow or add decorative scenery around the model.
+- **Don't** use a refined model's visual prominence to imply automatic improvement or print readiness.
+- **Don't** replace real output with a demonstration model or overwrite the original with a refined version.
+- **Don't** turn the incumbent 10–11px metadata sizes into a new minimum-size standard for future surfaces.
+
+<!-- Refreshed from client/style.css, client/vendor/hoard-theme.css, client/index.html, client/app.js, .impeccable/review/desktop.png and mobile.png, following PRODUCT.md and .impeccable/surfaces/workbench.md. Supersedes the light inspection-bench palette and utility-only type record under the user's explicit Hoard-family request. Not canonized: 10–11px metadata density, absent parser coverage, absent comp/QUALITY BAR/critique-reference artifacts, and historical stale-DESIGN detector warnings. -->

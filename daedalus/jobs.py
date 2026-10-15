@@ -69,6 +69,8 @@ class JobManager:
                         base=self.store.job(base['parent_id'])
                     spec['material_source']=str(self.config.jobs/base['id'])
                     spec['image']=str(self.config.jobs/base['id']/'preprocessed.png')
+                    if spec.get('backend')=='ultra' and (self.config.jobs/base['id']/'input.png').is_file():
+                        spec['image']=str(self.config.jobs/base['id']/'input.png')
                 def on_event(event):
                     with self.lock:
                         current=self.store.job(identity)

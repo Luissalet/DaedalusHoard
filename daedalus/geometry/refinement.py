@@ -209,7 +209,7 @@ def run(spec):
                 negative, positive = pred.chunk(2)
                 velocity = negative + 10 * (positive-negative)
                 refined = scheduler.step(velocity, t, refined, return_dict=False)[0]
-                event('refine_step', step=index+1, memory=memory())
+                event('refine_step', step=index+1, total=args.steps, memory=memory())
             torch.cuda.synchronize()
             event('refinement_sampled', seconds=round(time.perf_counter()-sample_start,3))
             torch.save({'initial':initial.cpu(), 'refined':refined.cpu(), 'center':torch.from_numpy(center), 'scale':float(scale)}, out / 'latents.pt')

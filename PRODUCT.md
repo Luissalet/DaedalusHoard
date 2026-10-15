@@ -34,7 +34,7 @@ Generated meshes are not guaranteed watertight, print-ready, rigged or retopolog
 
 ## Brand Commitments
 
-Hoard family naming, Spanish operating copy, no slogans, and the shared Faustus launcher mark for copilot access. Daedalus is an implementation name chosen for this build, not a user-approved naming preference.
+Luis explicitly requested the existing Hoard family style and icon. Use its shared charcoal theme, Cinzel headings, Source Sans 3 controls, a turquoise accent and the curled dragon surrounding a gold 3D cube and caliper. Spanish operating copy, no slogans, and the shared Faustus launcher mark for copilot access. Daedalus is an implementation name chosen for this build, not a user-approved naming preference.
 
 ## Evidence on Hand
 

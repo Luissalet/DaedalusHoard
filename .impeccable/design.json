@@ -1,185 +1,320 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-15T19:52:44.985Z",
+  "generatedAt": "2026-10-15T21:19:24.249018+00:00",
   "title": "Design System: Daedalus's Hoard",
   "extensions": {
     "colorMeta": {
       "accent": {
         "role": "primary",
-        "displayName": "Bench Green",
+        "displayName": "Daedalus Turquoise",
         "tonalRamp": [
-          "oklch(15% 0.06329 160.00)",
-          "oklch(26.43% 0.06329 160.00)",
-          "oklch(37.86% 0.06329 160.00)",
-          "oklch(49.29% 0.06329 160.00)",
-          "oklch(60.71% 0.06329 160.00)",
-          "oklch(72.14% 0.06329 160.00)",
-          "oklch(83.57% 0.06329 160.00)",
-          "oklch(95% 0.06329 160.00)"
+          "oklch(15.00% 0.09439 179.10)",
+          "oklch(26.43% 0.09439 179.10)",
+          "oklch(37.86% 0.09439 179.10)",
+          "oklch(49.29% 0.09439 179.10)",
+          "oklch(60.71% 0.09439 179.10)",
+          "oklch(72.14% 0.09439 179.10)",
+          "oklch(83.57% 0.09439 179.10)",
+          "oklch(95.00% 0.09439 179.10)"
         ]
       },
-      "ink": {
-        "role": "neutral",
-        "displayName": "Graphite Green",
+      "accent-strong": {
+        "role": "primary",
+        "displayName": "Light Turquoise",
         "tonalRamp": [
-          "oklch(15% 0.02261 157.76)",
-          "oklch(26.43% 0.02261 157.76)",
-          "oklch(37.86% 0.02261 157.76)",
-          "oklch(49.29% 0.02261 157.76)",
-          "oklch(60.71% 0.02261 157.76)",
-          "oklch(72.14% 0.02261 157.76)",
-          "oklch(83.57% 0.02261 157.76)",
-          "oklch(95% 0.02261 157.76)"
+          "oklch(15.00% 0.07119 180.24)",
+          "oklch(26.43% 0.07119 180.24)",
+          "oklch(37.86% 0.07119 180.24)",
+          "oklch(49.29% 0.07119 180.24)",
+          "oklch(60.71% 0.07119 180.24)",
+          "oklch(72.14% 0.07119 180.24)",
+          "oklch(83.57% 0.07119 180.24)",
+          "oklch(95.00% 0.07119 180.24)"
         ]
       },
-      "muted": {
-        "role": "neutral",
-        "displayName": "Muted Sage Ink",
+      "accent-dim": {
+        "role": "primary",
+        "displayName": "Deep Turquoise",
         "tonalRamp": [
-          "oklch(15% 0.02411 156.24)",
-          "oklch(26.43% 0.02411 156.24)",
-          "oklch(37.86% 0.02411 156.24)",
-          "oklch(49.29% 0.02411 156.24)",
-          "oklch(60.71% 0.02411 156.24)",
-          "oklch(72.14% 0.02411 156.24)",
-          "oklch(83.57% 0.02411 156.24)",
-          "oklch(95% 0.02411 156.24)"
+          "oklch(15.00% 0.08727 176.83)",
+          "oklch(26.43% 0.08727 176.83)",
+          "oklch(37.86% 0.08727 176.83)",
+          "oklch(49.29% 0.08727 176.83)",
+          "oklch(60.71% 0.08727 176.83)",
+          "oklch(72.14% 0.08727 176.83)",
+          "oklch(83.57% 0.08727 176.83)",
+          "oklch(95.00% 0.08727 176.83)"
+        ]
+      },
+      "accent-ink": {
+        "role": "primary",
+        "displayName": "Dark Accent Ink",
+        "tonalRamp": [
+          "oklch(15.00% 0.02529 178.14)",
+          "oklch(26.43% 0.02529 178.14)",
+          "oklch(37.86% 0.02529 178.14)",
+          "oklch(49.29% 0.02529 178.14)",
+          "oklch(60.71% 0.02529 178.14)",
+          "oklch(72.14% 0.02529 178.14)",
+          "oklch(83.57% 0.02529 178.14)",
+          "oklch(95.00% 0.02529 178.14)"
+        ]
+      },
+      "accent-soft": {
+        "role": "primary",
+        "displayName": "Turquoise Wash",
+        "tonalRamp": [
+          "oklch(15.00% 0.09439 179.10)",
+          "oklch(26.43% 0.09439 179.10)",
+          "oklch(37.86% 0.09439 179.10)",
+          "oklch(49.29% 0.09439 179.10)",
+          "oklch(60.71% 0.09439 179.10)",
+          "oklch(72.14% 0.09439 179.10)",
+          "oklch(83.57% 0.09439 179.10)",
+          "oklch(95.00% 0.09439 179.10)"
+        ]
+      },
+      "accent-line": {
+        "role": "primary",
+        "displayName": "Turquoise Boundary",
+        "tonalRamp": [
+          "oklch(15.00% 0.09439 179.10)",
+          "oklch(26.43% 0.09439 179.10)",
+          "oklch(37.86% 0.09439 179.10)",
+          "oklch(49.29% 0.09439 179.10)",
+          "oklch(60.71% 0.09439 179.10)",
+          "oklch(72.14% 0.09439 179.10)",
+          "oklch(83.57% 0.09439 179.10)",
+          "oklch(95.00% 0.09439 179.10)"
         ]
       },
       "canvas": {
         "role": "neutral",
-        "displayName": "Warm Paper",
+        "displayName": "Deep Charcoal",
         "tonalRamp": [
-          "oklch(15% 0.00662 106.52)",
-          "oklch(26.43% 0.00662 106.52)",
-          "oklch(37.86% 0.00662 106.52)",
-          "oklch(49.29% 0.00662 106.52)",
-          "oklch(60.71% 0.00662 106.52)",
-          "oklch(72.14% 0.00662 106.52)",
-          "oklch(83.57% 0.00662 106.52)",
-          "oklch(95% 0.00662 106.52)"
+          "oklch(15.00% 0.00309 196.92)",
+          "oklch(26.43% 0.00309 196.92)",
+          "oklch(37.86% 0.00309 196.92)",
+          "oklch(49.29% 0.00309 196.92)",
+          "oklch(60.71% 0.00309 196.92)",
+          "oklch(72.14% 0.00309 196.92)",
+          "oklch(83.57% 0.00309 196.92)",
+          "oklch(95.00% 0.00309 196.92)"
+        ]
+      },
+      "sunken": {
+        "role": "neutral",
+        "displayName": "Sunken Charcoal",
+        "tonalRamp": [
+          "oklch(15.00% 0.00317 196.89)",
+          "oklch(26.43% 0.00317 196.89)",
+          "oklch(37.86% 0.00317 196.89)",
+          "oklch(49.29% 0.00317 196.89)",
+          "oklch(60.71% 0.00317 196.89)",
+          "oklch(72.14% 0.00317 196.89)",
+          "oklch(83.57% 0.00317 196.89)",
+          "oklch(95.00% 0.00317 196.89)"
         ]
       },
       "surface": {
         "role": "neutral",
-        "displayName": "Ivory Surface",
+        "displayName": "Control Charcoal",
         "tonalRamp": [
-          "oklch(15% 0.00537 95.10)",
-          "oklch(26.43% 0.00537 95.10)",
-          "oklch(37.86% 0.00537 95.10)",
-          "oklch(49.29% 0.00537 95.10)",
-          "oklch(60.71% 0.00537 95.10)",
-          "oklch(72.14% 0.00537 95.10)",
-          "oklch(83.57% 0.00537 95.10)",
-          "oklch(95% 0.00537 95.10)"
+          "oklch(15.00% 0.00445 196.87)",
+          "oklch(26.43% 0.00445 196.87)",
+          "oklch(37.86% 0.00445 196.87)",
+          "oklch(49.29% 0.00445 196.87)",
+          "oklch(60.71% 0.00445 196.87)",
+          "oklch(72.14% 0.00445 196.87)",
+          "oklch(83.57% 0.00445 196.87)",
+          "oklch(95.00% 0.00445 196.87)"
+        ]
+      },
+      "elevated": {
+        "role": "neutral",
+        "displayName": "Elevated Charcoal",
+        "tonalRamp": [
+          "oklch(15.00% 0.00467 219.64)",
+          "oklch(26.43% 0.00467 219.64)",
+          "oklch(37.86% 0.00467 219.64)",
+          "oklch(49.29% 0.00467 219.64)",
+          "oklch(60.71% 0.00467 219.64)",
+          "oklch(72.14% 0.00467 219.64)",
+          "oklch(83.57% 0.00467 219.64)",
+          "oklch(95.00% 0.00467 219.64)"
+        ]
+      },
+      "hover": {
+        "role": "neutral",
+        "displayName": "Hover Charcoal",
+        "tonalRamp": [
+          "oklch(15.00% 0.00456 219.62)",
+          "oklch(26.43% 0.00456 219.62)",
+          "oklch(37.86% 0.00456 219.62)",
+          "oklch(49.29% 0.00456 219.62)",
+          "oklch(60.71% 0.00456 219.62)",
+          "oklch(72.14% 0.00456 219.62)",
+          "oklch(83.57% 0.00456 219.62)",
+          "oklch(95.00% 0.00456 219.62)"
         ]
       },
       "line": {
         "role": "neutral",
-        "displayName": "Fine Sage Divider",
+        "displayName": "Fine Divider",
         "tonalRamp": [
-          "oklch(15% 0.01580 126.84)",
-          "oklch(26.43% 0.01580 126.84)",
-          "oklch(37.86% 0.01580 126.84)",
-          "oklch(49.29% 0.01580 126.84)",
-          "oklch(60.71% 0.01580 126.84)",
-          "oklch(72.14% 0.01580 126.84)",
-          "oklch(83.57% 0.01580 126.84)",
-          "oklch(95% 0.01580 126.84)"
+          "oklch(15.00% 0.00443 219.60)",
+          "oklch(26.43% 0.00443 219.60)",
+          "oklch(37.86% 0.00443 219.60)",
+          "oklch(49.29% 0.00443 219.60)",
+          "oklch(60.71% 0.00443 219.60)",
+          "oklch(72.14% 0.00443 219.60)",
+          "oklch(83.57% 0.00443 219.60)",
+          "oklch(95.00% 0.00443 219.60)"
         ]
       },
       "control": {
         "role": "neutral",
-        "displayName": "Control Sage",
+        "displayName": "Control Outline",
         "tonalRamp": [
-          "oklch(15% 0.02628 154.84)",
-          "oklch(26.43% 0.02628 154.84)",
-          "oklch(37.86% 0.02628 154.84)",
-          "oklch(49.29% 0.02628 154.84)",
-          "oklch(60.71% 0.02628 154.84)",
-          "oklch(72.14% 0.02628 154.84)",
-          "oklch(83.57% 0.02628 154.84)",
-          "oklch(95% 0.02628 154.84)"
+          "oklch(15.00% 0.00646 211.04)",
+          "oklch(26.43% 0.00646 211.04)",
+          "oklch(37.86% 0.00646 211.04)",
+          "oklch(49.29% 0.00646 211.04)",
+          "oklch(60.71% 0.00646 211.04)",
+          "oklch(72.14% 0.00646 211.04)",
+          "oklch(83.57% 0.00646 211.04)",
+          "oklch(95.00% 0.00646 211.04)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Pale Ink",
+        "tonalRamp": [
+          "oklch(15.00% 0.01002 212.52)",
+          "oklch(26.43% 0.01002 212.52)",
+          "oklch(37.86% 0.01002 212.52)",
+          "oklch(49.29% 0.01002 212.52)",
+          "oklch(60.71% 0.01002 212.52)",
+          "oklch(72.14% 0.01002 212.52)",
+          "oklch(83.57% 0.01002 212.52)",
+          "oklch(95.00% 0.01002 212.52)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted Ink",
+        "tonalRamp": [
+          "oklch(15.00% 0.00937 214.35)",
+          "oklch(26.43% 0.00937 214.35)",
+          "oklch(37.86% 0.00937 214.35)",
+          "oklch(49.29% 0.00937 214.35)",
+          "oklch(60.71% 0.00937 214.35)",
+          "oklch(72.14% 0.00937 214.35)",
+          "oklch(83.57% 0.00937 214.35)",
+          "oklch(95.00% 0.00937 214.35)"
+        ]
+      },
+      "dim": {
+        "role": "neutral",
+        "displayName": "Dim Ink",
+        "tonalRamp": [
+          "oklch(15.00% 0.01068 212.53)",
+          "oklch(26.43% 0.01068 212.53)",
+          "oklch(37.86% 0.01068 212.53)",
+          "oklch(49.29% 0.01068 212.53)",
+          "oklch(60.71% 0.01068 212.53)",
+          "oklch(72.14% 0.01068 212.53)",
+          "oklch(83.57% 0.01068 212.53)",
+          "oklch(95.00% 0.01068 212.53)"
         ]
       },
       "field": {
         "role": "neutral",
-        "displayName": "Inspection Grey",
+        "displayName": "Inspection Charcoal",
         "tonalRamp": [
-          "oklch(15% 0.01283 126.39)",
-          "oklch(26.43% 0.01283 126.39)",
-          "oklch(37.86% 0.01283 126.39)",
-          "oklch(49.29% 0.01283 126.39)",
-          "oklch(60.71% 0.01283 126.39)",
-          "oklch(72.14% 0.01283 126.39)",
-          "oklch(83.57% 0.01283 126.39)",
-          "oklch(95% 0.01283 126.39)"
+          "oklch(15.00% 0.01138 205.75)",
+          "oklch(26.43% 0.01138 205.75)",
+          "oklch(37.86% 0.01138 205.75)",
+          "oklch(49.29% 0.01138 205.75)",
+          "oklch(60.71% 0.01138 205.75)",
+          "oklch(72.14% 0.01138 205.75)",
+          "oklch(83.57% 0.01138 205.75)",
+          "oklch(95.00% 0.01138 205.75)"
         ]
       },
       "danger": {
         "role": "feedback",
-        "displayName": "Muted Brick",
+        "displayName": "Error Coral",
         "tonalRamp": [
-          "oklch(15% 0.12213 28.35)",
-          "oklch(26.43% 0.12213 28.35)",
-          "oklch(37.86% 0.12213 28.35)",
-          "oklch(49.29% 0.12213 28.35)",
-          "oklch(60.71% 0.12213 28.35)",
-          "oklch(72.14% 0.12213 28.35)",
-          "oklch(83.57% 0.12213 28.35)",
-          "oklch(95% 0.12213 28.35)"
+          "oklch(15.00% 0.11815 26.59)",
+          "oklch(26.43% 0.11815 26.59)",
+          "oklch(37.86% 0.11815 26.59)",
+          "oklch(49.29% 0.11815 26.59)",
+          "oklch(60.71% 0.11815 26.59)",
+          "oklch(72.14% 0.11815 26.59)",
+          "oklch(83.57% 0.11815 26.59)",
+          "oklch(95.00% 0.11815 26.59)"
         ]
       }
     },
     "typographyMeta": {
+      "brand": {
+        "displayName": "Brand",
+        "purpose": "Cinzel header identity; reduced on phones."
+      },
       "headline": {
-        "displayName": "Operational heading",
-        "purpose": "Main page heading; no display-type role is established."
+        "displayName": "Headline",
+        "purpose": "Main page heading."
       },
       "title": {
-        "displayName": "Section title",
-        "purpose": "Compact workspace sections."
+        "displayName": "Title",
+        "purpose": "Compact section headings."
       },
       "body": {
-        "displayName": "Body and field values",
-        "purpose": "Ordinary text and control values."
+        "displayName": "Body",
+        "purpose": "Operational copy and field values."
       },
       "label": {
-        "displayName": "Field label",
-        "purpose": "Sentence-case field names."
+        "displayName": "Label",
+        "purpose": "Visible field names."
       },
       "small": {
-        "displayName": "Supporting copy",
-        "purpose": "Helper text and version descriptions."
+        "displayName": "Small",
+        "purpose": "Supporting instructions; not a mandate to shrink future text."
       }
     },
     "shadows": [
       {
         "name": "progress-overlay",
-        "value": "0 7px 22px rgba(33,50,36,.12)",
+        "value": "0 7px 22px rgba(0,0,0,.3)",
         "purpose": "Progress overlapping the model field."
       },
       {
         "name": "notice",
-        "value": "0 6px 24px rgba(24,44,28,.2)",
-        "purpose": "Transient message."
+        "value": "0 6px 24px rgba(0,0,0,.3)",
+        "purpose": "Transient notice."
       },
       {
         "name": "dialog",
-        "value": "0 20px 70px rgba(28,43,31,.2)",
-        "purpose": "Settings modal."
+        "value": "0 20px 70px rgba(0,0,0,.4)",
+        "purpose": "Modal settings layer."
       }
     ],
     "motion": [
       {
         "name": "control-transition",
         "value": "background .18s, color .18s, border-color .18s",
-        "purpose": "Button and upload state changes; disabled under prefers-reduced-motion."
+        "purpose": "Button state changes; reduced motion removes transitions."
+      },
+      {
+        "name": "upload-transition",
+        "value": "background .18s, border-color .18s",
+        "purpose": "Upload hover and drag state; reduced motion removes transitions."
       },
       {
         "name": "thumbnail-hover",
         "value": "transform .2s; scale(1.025)",
-        "purpose": "Contained library-image hover; disabled under prefers-reduced-motion."
+        "purpose": "Contained library image response; reduced motion removes the transition."
       }
     ],
     "breakpoints": [
@@ -201,97 +336,98 @@
     {
       "name": "Primary button",
       "kind": "button",
-      "refersTo": "button-primary",
-      "description": "Generation and download actions.",
+      "description": "Primary button using the implemented Hoard states.",
       "html": "<button class=\"ds-primary\">Generar modelo</button>",
-      "css": ".ds-primary{display:inline-flex;justify-content:center;align-items:center;gap:10px;line-height:1.3;text-decoration:none;border:1px solid transparent;border-radius:5px;cursor:pointer;font-family:\"Segoe UI\",system-ui,sans-serif;font-size:14px;transition:background .18s,color .18s,border-color .18s;background:var(--accent,#315e47);color:#fff;padding:11px 15px;border-color:var(--accent,#315e47);font-weight:600;}.ds-primary:focus-visible{outline:2px solid var(--accent,#315e47);outline-offset:3px}.ds-primary:disabled{opacity:.5;cursor:default}@media(prefers-reduced-motion:reduce){.ds-primary{transition:none}}.ds-primary:hover{background:#234b34}.ds-primary:active{background:#173a25}"
+      "css": ".ds-primary{display:inline-flex;justify-content:center;align-items:center;gap:10px;line-height:1.3;text-decoration:none;border:1px solid transparent;border-radius:5px;cursor:pointer;font-family:var(--hoard-font-sans,'Source Sans 3',sans-serif);font-size:14px;transition:background .18s,color .18s,border-color .18s;background:var(--hoard-accent,#73d1be);color:var(--hoard-accent-ink,#10221e);padding:11px 15px;border-color:var(--hoard-accent,#73d1be);font-weight:600;}.ds-primary:hover{background:var(--hoard-accent-strong,#9bdfd1)}.ds-primary:active{background:var(--hoard-accent-dim,#54a895)}.ds-primary:focus-visible{outline:2px solid var(--hoard-accent,#73d1be);outline-offset:3px}.ds-primary:disabled{opacity:.5;cursor:default}@media(prefers-reduced-motion:reduce){.ds-primary{transition:none}}",
+      "refersTo": "button-primary"
     },
     {
       "name": "Secondary button",
       "kind": "button",
-      "refersTo": "button-secondary",
-      "description": "Refinement and supporting actions.",
+      "description": "Secondary button using the implemented Hoard states.",
       "html": "<button class=\"ds-secondary\">Crear versión refinada</button>",
-      "css": ".ds-secondary{display:inline-flex;justify-content:center;align-items:center;gap:10px;line-height:1.3;text-decoration:none;border:1px solid transparent;border-radius:5px;cursor:pointer;font-family:\"Segoe UI\",system-ui,sans-serif;font-size:14px;transition:background .18s,color .18s,border-color .18s;background:var(--surface,#fffefa);color:var(--ink,#26332b);padding:10px 12px;border-color:var(--control,#839488);}.ds-secondary:focus-visible{outline:2px solid var(--accent,#315e47);outline-offset:3px}.ds-secondary:disabled{opacity:.5;cursor:default}@media(prefers-reduced-motion:reduce){.ds-secondary{transition:none}}.ds-secondary:hover{background:#e9eee4;border-color:var(--accent,#315e47)}"
+      "css": ".ds-secondary{display:inline-flex;justify-content:center;align-items:center;gap:10px;line-height:1.3;text-decoration:none;border:1px solid transparent;border-radius:5px;cursor:pointer;font-family:var(--hoard-font-sans,'Source Sans 3',sans-serif);font-size:14px;transition:background .18s,color .18s,border-color .18s;background:var(--hoard-surface,#1e2121);color:var(--hoard-text,#e1eaec);padding:10px 12px;border-color:var(--hoard-border-hover,#5e6364);}.ds-secondary:hover{background:var(--hoard-hover,#303334);border-color:var(--hoard-accent,#73d1be)}.ds-secondary:focus-visible{outline:2px solid var(--hoard-accent,#73d1be);outline-offset:3px}.ds-secondary:disabled{opacity:.5;cursor:default}@media(prefers-reduced-motion:reduce){.ds-secondary{transition:none}}",
+      "refersTo": "button-secondary"
     },
     {
       "name": "Quiet control",
       "kind": "button",
-      "refersTo": "button-quiet",
-      "description": "Model material and comparison controls.",
+      "description": "Quiet control using the implemented Hoard states.",
       "html": "<button class=\"ds-quiet\" aria-pressed=\"true\">Una sola versión</button>",
-      "css": ".ds-quiet{display:inline-flex;justify-content:center;align-items:center;gap:10px;line-height:1.3;text-decoration:none;border:1px solid transparent;border-radius:5px;cursor:pointer;font-family:\"Segoe UI\",system-ui,sans-serif;font-size:14px;transition:background .18s,color .18s,border-color .18s;background:var(--surface,#fffefa);color:var(--ink,#26332b);padding:7px 9px;border-color:var(--line,#d5dacf);font-size:12px;}.ds-quiet:focus-visible{outline:2px solid var(--accent,#315e47);outline-offset:3px}.ds-quiet:disabled{opacity:.5;cursor:default}@media(prefers-reduced-motion:reduce){.ds-quiet{transition:none}}.ds-quiet:hover,.ds-quiet[aria-pressed=\"true\"]{background:#e2ebde;border-color:#92a48f}"
+      "css": ".ds-quiet{display:inline-flex;justify-content:center;align-items:center;gap:10px;line-height:1.3;text-decoration:none;border:1px solid transparent;border-radius:5px;cursor:pointer;font-family:var(--hoard-font-sans,'Source Sans 3',sans-serif);font-size:14px;transition:background .18s,color .18s,border-color .18s;background:var(--hoard-surface,#1e2121);color:var(--hoard-text,#e1eaec);padding:7px 9px;border-color:var(--hoard-border,#3a3d3e);font-size:12px;min-height:36px;}.ds-quiet:hover,.ds-quiet[aria-pressed=true]{background:var(--hoard-accent-soft,rgba(115,209,190,.14));border-color:var(--hoard-accent-line,rgba(115,209,190,.38))}.ds-quiet:focus-visible{outline:2px solid var(--hoard-accent,#73d1be);outline-offset:3px}.ds-quiet:disabled{opacity:.5;cursor:default}@media(prefers-reduced-motion:reduce){.ds-quiet{transition:none}}",
+      "refersTo": "button-quiet"
     },
     {
-      "name": "Icon button",
+      "name": "Camera icon button",
       "kind": "button",
-      "description": "An accessible camera reset control with the actual inline SVG.",
+      "description": "Camera icon button using the implemented Hoard states.",
       "html": "<button class=\"ds-icon\" aria-label=\"Restablecer vista\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M4 7a6 6 0 1 1 0 6M4 3v4h4\"/></svg></button>",
-      "css": ".ds-icon{display:inline-flex;justify-content:center;align-items:center;gap:10px;line-height:1.3;text-decoration:none;border:1px solid transparent;border-radius:5px;cursor:pointer;font-family:\"Segoe UI\",system-ui,sans-serif;font-size:14px;transition:background .18s,color .18s,border-color .18s;width:32px;height:32px;background:none;color:var(--muted,#58675d);padding:4px;}.ds-icon:focus-visible{outline:2px solid var(--accent,#315e47);outline-offset:3px}.ds-icon:disabled{opacity:.5;cursor:default}@media(prefers-reduced-motion:reduce){.ds-icon{transition:none}}.ds-icon svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}.ds-icon:hover{background:#e5eade}"
+      "css": ".ds-icon{display:inline-flex;justify-content:center;align-items:center;gap:10px;line-height:1.3;text-decoration:none;border:1px solid transparent;border-radius:5px;cursor:pointer;font-family:var(--hoard-font-sans,'Source Sans 3',sans-serif);font-size:14px;transition:background .18s,color .18s,border-color .18s;width:40px;height:40px;background:none;color:var(--hoard-text-muted,#b4bcbe);padding:4px;}.ds-icon:hover{background:var(--hoard-hover,#303334)}.ds-icon svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}.ds-icon:focus-visible{outline:2px solid var(--hoard-accent,#73d1be);outline-offset:3px}.ds-icon:disabled{opacity:.5;cursor:default}@media(prefers-reduced-motion:reduce){.ds-icon{transition:none}}"
     },
     {
       "name": "Text action",
       "kind": "button",
-      "description": "Small secondary actions without a filled container.",
+      "description": "Text action using the implemented Hoard states.",
       "html": "<button class=\"ds-text\">Ver biblioteca</button>",
-      "css": ".ds-text{display:inline-flex;justify-content:center;align-items:center;gap:10px;line-height:1.3;text-decoration:none;border:1px solid transparent;border-radius:5px;cursor:pointer;font-family:\"Segoe UI\",system-ui,sans-serif;font-size:14px;transition:background .18s,color .18s,border-color .18s;border:0;background:none;padding:4px 0;color:var(--accent,#315e47);font-size:12px;text-align:left;text-underline-offset:3px;}.ds-text:focus-visible{outline:2px solid var(--accent,#315e47);outline-offset:3px}.ds-text:disabled{opacity:.5;cursor:default}@media(prefers-reduced-motion:reduce){.ds-text{transition:none}}.ds-text:hover{text-decoration:underline}"
+      "css": ".ds-text{display:inline-flex;justify-content:center;align-items:center;gap:10px;line-height:1.3;text-decoration:none;border:1px solid transparent;border-radius:5px;cursor:pointer;font-family:var(--hoard-font-sans,'Source Sans 3',sans-serif);font-size:14px;transition:background .18s,color .18s,border-color .18s;border:0;background:none;padding:4px 0;color:var(--hoard-accent,#73d1be);font-size:12px;text-align:left;text-underline-offset:3px;}.ds-text:hover{text-decoration:underline}.ds-text:focus-visible{outline:2px solid var(--hoard-accent,#73d1be);outline-offset:3px}.ds-text:disabled{opacity:.5;cursor:default}@media(prefers-reduced-motion:reduce){.ds-text{transition:none}}"
     },
     {
       "name": "Labeled field",
       "kind": "input",
       "refersTo": "input",
-      "description": "Compact named inputs with a visible focus outline.",
+      "description": "Visible label above a compact field.",
       "html": "<label class=\"ds-field\">Nombre<input type=\"text\" placeholder=\"Nombre de la pieza\"></label>",
-      "css": ".ds-field{display:block;font-size:12px;font-weight:600;color:var(--ink,#26332b);font-family:\"Segoe UI\",system-ui,sans-serif;}.ds-field input{display:block;width:100%;padding:10px 11px;border:1px solid var(--control,#839488);border-radius:5px;background:var(--surface,#fffefa);color:var(--ink,#26332b);margin-top:7px;font-family:\"Segoe UI\",system-ui,sans-serif;font-size:14px;font-weight:400;min-width:0;caret-color:var(--accent,#315e47)}.ds-field input::placeholder{color:#627066}.ds-field input:focus-visible{outline:2px solid var(--accent,#315e47);outline-offset:3px}"
+      "css": ".ds-field{display:block;font-size:12px;font-weight:600;color:var(--hoard-text,#e1eaec);font-family:var(--hoard-font-sans,'Source Sans 3',sans-serif);}.ds-field input{display:block;width:100%;padding:10px 11px;border:1px solid var(--hoard-border-hover,#5e6364);border-radius:5px;background:var(--hoard-surface,#1e2121);color:var(--hoard-text,#e1eaec);margin-top:7px;font-family:var(--hoard-font-sans,'Source Sans 3',sans-serif);font-size:14px;font-weight:400;min-width:0;caret-color:var(--hoard-accent,#73d1be)}.ds-field input::placeholder{color:var(--hoard-text-dim,#9ba4a6)}.ds-field input:hover{border-color:var(--hoard-border-hover,#5e6364)}.ds-field input:focus-visible{outline:2px solid var(--hoard-accent,#73d1be);outline-offset:3px}"
     },
     {
       "name": "View navigation",
       "kind": "nav",
-      "description": "Active view indicated by text weight, hue and an underline.",
+      "description": "Text navigation with a selected bottom rule.",
       "html": "<nav class=\"ds-nav\" aria-label=\"Vistas\"><button aria-current=\"page\">Crear</button><button>Biblioteca</button></nav>",
-      "css": ".ds-nav{display:flex;gap:26px;height:72px}.ds-nav button{border:0;border-bottom:2px solid transparent;background:none;color:var(--muted,#58675d);padding:0 2px;font-family:\"Segoe UI\",system-ui,sans-serif;font-size:14px;cursor:pointer}.ds-nav button[aria-current=\"page\"]{border-bottom-color:var(--accent,#315e47);color:var(--accent,#315e47);font-weight:600}.ds-nav button:focus-visible{outline:2px solid var(--accent,#315e47);outline-offset:3px}"
+      "css": ".ds-nav{display:flex;gap:26px;height:72px}.ds-nav button{border:0;border-bottom:2px solid transparent;background:none;color:var(--hoard-text-muted,#b4bcbe);padding:0 2px;font-family:var(--hoard-font-sans,'Source Sans 3',sans-serif);font-size:14px;cursor:pointer}.ds-nav button[aria-current=page]{border-bottom-color:var(--hoard-accent,#73d1be);color:var(--hoard-accent,#73d1be);font-weight:600}.ds-nav button:focus-visible{outline:2px solid var(--hoard-accent,#73d1be);outline-offset:3px}"
     },
     {
       "name": "Status badge",
       "kind": "chip",
-      "description": "Read-only state label placed over a library thumbnail.",
+      "description": "Read-only library status label.",
       "html": "<span class=\"ds-badge\">Terminado</span>",
-      "css": ".ds-badge{display:inline-block;background:var(--surface,#fffefa);color:var(--ink,#26332b);padding:4px 7px;font-size:11px;border-radius:4px;font-family:\"Segoe UI\",system-ui,sans-serif;}"
+      "css": ".ds-badge{display:inline-block;background:var(--hoard-surface,#1e2121);color:var(--hoard-text,#e1eaec);padding:4px 7px;font-size:11px;border-radius:4px;font-family:var(--hoard-font-sans,'Source Sans 3',sans-serif);}"
     },
     {
       "name": "Library card",
       "kind": "card",
-      "description": "Whole-cell selection; real thumbnails occupy the bounded field. This snippet leaves that field empty.",
-      "html": "<button class=\"ds-card\"><span class=\"ds-thumb\"><span class=\"ds-card-badge\">Terminado</span></span><span class=\"ds-card-title\">Modelo guardado</span><span class=\"ds-card-meta\"><span>Original · 512</span><span>15 oct</span></span></button>",
-      "css": ".ds-card{display:block;padding:0;border:0;background:none;cursor:pointer;text-align:left;color:var(--ink,#26332b);width:250px;min-width:0;font-family:\"Segoe UI\",system-ui,sans-serif;}.ds-thumb{display:block;aspect-ratio:1.18;background:#dfe3d9;border-radius:7px;overflow:hidden;position:relative}.ds-thumb img{width:100%;height:100%;object-fit:contain;display:block;transition:transform .2s}.ds-card:hover .ds-thumb img{transform:scale(1.025)}.ds-card-badge{position:absolute;bottom:10px;left:10px;background:var(--surface,#fffefa);padding:4px 7px;font-size:11px;border-radius:4px}.ds-card-title{display:block;font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:12px 0 5px}.ds-card-meta{font-size:12px;color:var(--muted,#58675d);display:flex;justify-content:space-between;gap:8px}.ds-card:focus-visible{outline:2px solid var(--accent,#315e47);outline-offset:3px}@media(prefers-reduced-motion:reduce){.ds-thumb img{transition:none}}"
+      "description": "Whole-cell selection with a bounded thumbnail well, shown empty here rather than substituting a model.",
+      "html": "<button class=\"ds-card\"><span class=\"ds-thumb\"><span class=\"ds-card-badge\">Terminado</span></span><h2>Modelo guardado</h2><p><span>Original · 512</span><span>15 oct</span></p></button>",
+      "css": ".ds-card{display:block;padding:0;border:0;background:none;cursor:pointer;text-align:left;color:var(--hoard-text,#e1eaec);width:250px;min-width:0;font-family:var(--hoard-font-sans,'Source Sans 3',sans-serif);}.ds-thumb{display:block;aspect-ratio:1.18;background:var(--hoard-sunken,#121414);border-radius:7px;overflow:hidden;position:relative}.ds-thumb img{width:100%;height:100%;object-fit:contain;display:block;transition:transform .2s}.ds-card:hover .ds-thumb img{transform:scale(1.025)}.ds-card-badge{position:absolute;bottom:10px;left:10px;background:var(--hoard-surface,#1e2121);padding:4px 7px;font-size:11px;border-radius:4px}.ds-card h2{font-family:var(--hoard-font-serif,Cinzel,Georgia,serif);font-size:14px;line-height:1.4;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:12px 0 5px}.ds-card p{font-size:12px;line-height:1.55;color:var(--hoard-text-muted,#b4bcbe);display:flex;justify-content:space-between;gap:8px;margin:0}.ds-card:focus-visible{outline:2px solid var(--hoard-accent,#73d1be);outline-offset:3px}@media(prefers-reduced-motion:reduce){.ds-thumb img{transition:none}}"
     },
     {
       "name": "Version selection",
       "kind": "custom",
-      "description": "A compact retained version with a semantic pressed state.",
-      "html": "<button class=\"ds-version\" aria-pressed=\"true\"><span>Refinado · 2</span><small>Nueva geometría · Terminado</small></button>",
-      "css": ".ds-version{display:flex;flex-direction:column;gap:4px;width:240px;text-align:left;padding:9px 10px;border:1px solid transparent;border-radius:5px;background:none;color:var(--ink,#26332b);cursor:pointer;font-family:\"Segoe UI\",system-ui,sans-serif;}.ds-version[aria-pressed=\"true\"]{background:#e2ebde;border-color:#a7b5a1}.ds-version:hover{background:#e9eee4}.ds-version span{font-size:12px;font-weight:600}.ds-version small{font-size:11px;color:var(--muted,#58675d)}.ds-version:focus-visible{outline:2px solid var(--accent,#315e47);outline-offset:3px}"
+      "refersTo": "version-selected",
+      "description": "Retained version with engine metadata and semantic selection.",
+      "html": "<button class=\"ds-version\" aria-pressed=\"true\"><span>Refinado · 4</span><small>UltraShape · 8.192 · Terminado</small></button>",
+      "css": ".ds-version{display:flex;flex-direction:column;gap:4px;width:240px;text-align:left;padding:9px 10px;border:1px solid transparent;border-radius:5px;background:none;color:var(--hoard-text,#e1eaec);cursor:pointer;font-family:var(--hoard-font-sans,'Source Sans 3',sans-serif);}.ds-version[aria-pressed=true]{background:var(--hoard-accent-soft,rgba(115,209,190,.14));border-color:var(--hoard-accent-line,rgba(115,209,190,.38))}.ds-version:hover{background:var(--hoard-hover,#303334)}.ds-version span{font-size:12px;font-weight:600}.ds-version small{font-size:11px;color:var(--hoard-text-muted,#b4bcbe)}.ds-version:focus-visible{outline:2px solid var(--hoard-accent,#73d1be);outline-offset:3px}"
     }
   ],
   "narrative": {
-    "northStar": "The Model Inspection Bench",
-    "overview": "The built interface translates the assigned microscopy workbench direction into a quiet digital inspection bench. Warm paper surfaces, muted green controls and a separate neutral model field keep the specimen legible. Preparation, inspection and preserved versions are visible as working tools rather than decorative laboratory imagery.\n\nThe system is compact and task oriented. Small sentence-case headings, plain Spanish labels, fine dividers and restrained rounding give the model more visual weight than the surrounding controls. The comparison view uses equal adjacent panes and linked camera movement, with a common clay mode for judging geometry. Color mode shows the actual model materials.\n\nThis is a record of the built client and the existing desktop/mobile screenshots, following a confirmed code-led build. The North Star names the implemented direction; it is not a newly approved brand identity. No approved comp, QUALITY BAR card or generated critique-reference exists, so this document makes no comp-fidelity claim. Daedalus remains an implementation name.",
+    "northStar": "The Hoard Model Workbench",
+    "overview": "The implemented world is the existing Hoard family: shared charcoal surfaces, Cinzel headings, Source Sans 3 controls and Daedalus's turquoise accent. Luis explicitly requested this family style and icon, superseding the earlier light inspection-bench direction. The north star below describes that implemented family workbench; it does not establish a new identity or an approved naming preference.\n\nA compact, flat workspace surrounds a distinct model field. Preparation, retained versions, refinement and export stay legible around the actual geometry. Equal comparison panes and linked orbit let the user inspect an original beside a later version; common clay material supports shape comparison, while color mode restores the actual model materials.\n\nThis record follows the finished client and the desktop/mobile captures. Construction was explicitly code-led: no approved visual comp, QUALITY BAR card or generated critique-reference exists, and no comp-fidelity claim is made. The latest finish pass reported SHIP at its inspected scope; the detector ran DEGRADED with parsers absent. Those are evidence limits, not additional design rules.",
     "keyCharacteristics": [
-      "Warm light surfaces with a muted green action accent.",
-      "A distinct neutral field for inspecting real geometry.",
-      "Compact, sentence-case utility typography.",
-      "Flat panels and fine structural dividers.",
-      "Aligned original/refined comparison with preserved version selection."
+      "Inherited charcoal surfaces with a single turquoise action accent.",
+      "Self-hosted Cinzel headings and Source Sans 3 operational text.",
+      "The supplied curled dragon, gold cube and caliper icon as family identity.",
+      "Flat persistent panels, fine dividers and restrained corner radii.",
+      "Actual model geometry, aligned comparison and separately retained versions."
     ],
     "rules": [
       {
-        "name": "The Specimen Field Rule",
-        "body": "Keep the model field distinct from the paper control surfaces so the object remains the primary visual evidence.",
+        "name": "The Family Surface Rule",
+        "body": "Use the inherited charcoal layers and the app accent for controls; preserve the model field as a distinct inspection surface.",
         "section": "colors"
       },
       {
         "name": "The Task Label Rule",
-        "body": "Use short, sentence-case labels that name the action, object or state; do not introduce slogans or ornamental eyebrows.",
+        "body": "Use short, sentence-case Spanish labels that name an action, object or state; Cinzel provides the family heading character without slogans or ornamental eyebrows.",
         "section": "typography"
       },
       {
@@ -301,19 +437,19 @@
       }
     ],
     "dos": [
-      "**Do** keep the model field visually distinct from the control surfaces.",
-      "**Do** use sentence-case Spanish labels and compact, visible field names.",
-      "**Do** show version selection through fill, border and a semantic pressed state.",
-      "**Do** compare original and refined geometry in aligned panes with linked orbit.",
-      "**Do** retain visible keyboard focus and honor reduced motion.",
-      "**Do** keep export units visible beside the entered dimension."
+      "**Do** load the shared Hoard theme before the app stylesheet and retain the local font assets.",
+      "**Do** use the supplied app icon for the brand and the shared Faustus launcher for copilot access.",
+      "**Do** keep the model field distinct, compare aligned versions and retain the original.",
+      "**Do** expose selected state through fill, border and semantic state attributes.",
+      "**Do** retain visible keyboard focus, native control behavior and reduced motion.",
+      "**Do** keep export units beside the entered dimension and keep library access visible on phones."
     ],
     "donts": [
-      "**Don't** add decorative laboratory imagery to express the inspection-bench direction.",
-      "**Don't** raise every persistent panel with a shadow.",
-      "**Don't** use a refined model's visual prominence to imply it is automatically better or print-ready.",
-      "**Don't** replace the original with a refined result or label a synthetic specimen as an actual result.",
-      "**Don't** promote the current small metadata sizes or utility system font into a new display-type standard."
+      "**Don't** reintroduce the superseded light paper palette or replace the family icon with a generic cube mark.",
+      "**Don't** raise every persistent panel with a shadow or add decorative scenery around the model.",
+      "**Don't** use a refined model's visual prominence to imply automatic improvement or print readiness.",
+      "**Don't** replace real output with a demonstration model or overwrite the original with a refined version.",
+      "**Don't** turn the incumbent 10–11px metadata sizes into a new minimum-size standard for future surfaces."
     ]
   }
 }
