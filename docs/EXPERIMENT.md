@@ -45,3 +45,25 @@ Full-mesh linked-clay browser comparison shows more defined grilles/raised mecha
 During final review an external cleanup removed the active isolated source/evidence and older QA stores. The exact functional checkpoint a0aa53f was recovered from Main refs/rescue/research-inbox-daedalus-refiners627-20261015-product/main. All13jobs survived in the newest independent copy daedalus-qa627b-20261016. Original mechanical model/latent matched pre-cleanup SHA; both upscale source latents match their recorded engine SHA. Current jobs/engine logs, reconstructed receipts and recaptured browser images are retained. Older deleted proof files are not claimed to remain available. Main was not changed by cleanup.
 
 Durable copy: D:/LocalAI/HoardStorage/daedalus-comparisons627 retains all13 saved jobs (including historical errors/cancellations), originals and variants, with a SQLite backup and remapped image paths. The two original/upscaled pairs have identical GLB, latent and input hashes against final QA; archive-preservation-proof.json records them.
+
+## Optional printing and game preparation, task636 (16 October)
+
+These native API/MCP jobs ran on CPU without GPU leases. They create independent child versions; generation, learned refinement and learned upscaling retain their four-GPU execution. Four original/upscaled model hashes match the immutable task627 archive. Every completed child also records and verifies the SHA of its immediate parent.
+
+| Object / optional pass | Input faces | Result faces | Worker seconds | Measured result |
+| --- | ---: | ---: | ---: | --- |
+| Mechanical1024 / volume repair256 | 17,486,120 | 900,822 | 252.184 | Closed, positive volume, 13 components, zero boundary/nonmanifold edges |
+| Owl1024 / volume repair256 | 6,038,376 | 339,616 | 41.752 | Closed, positive volume, one component, zero boundary/nonmanifold edges |
+| Owl512 / volume repair128 | 1,514,230 | 81,828 | 9.476 | Closed, positive volume, one component, zero boundary/nonmanifold edges |
+| Repaired mechanical / game50k | 900,822 | 49,647 | 37.368 | Budget met; 7,680,392-byte GLB, 2048px PBR textures |
+| Owl1024 / direct game50k | 6,038,376 | 99,949 | 194.644 | Budget not met; 9,171,560-byte GLB, 2048px PBR textures |
+
+Worker timings exclude queue time. File sizes above describe saved model.glb, before a separate scaled export. The mechanical repair used an explicit one-million-face working budget before reconstruction. Volume reconstruction uses a 128/256/384-cell longest-axis grid, one-cell full-neighbourhood closing and cavity filling; it can smooth fine details, merge nearby pieces and fill intended cavities. It is an explicit approximation, not recovery of a ground-truth solid. The 256 mechanical case reduced 1144 noisy components to13. Closure does not certify printable wall thickness, supports or assembly tolerances; inspect the version in a slicer.
+
+The surface-preserving MeshFix alternative remains selectable. A severely nonmanifold mechanical working mesh (224,457 nonmanifold edges) was cancelled after more than15 minutes; no claim of successful repair is made for that cancelled run. Earlier large direct-game prototypes were also cancelled and remain in history. Legacy surface jobs retain that method when retried; new repair jobs default to volume reconstruction.
+
+Game versions have new UV charts and baked base-colour/metallic/roughness textures. Their measured triangle count, actual decimal MB and unmet-budget warning are shown in the interface; 99,949 is not presented as50,000. The repaired mechanical chain meets its50k target, but its decimated game mesh is open and remains separate from the closed printing version. These passes do not add animation topology, rigging or a universal visual-quality improvement. Explicitly discarded materials stay absent throughout subsequent passes.
+
+Independent full-GLB readback confirmed all five outputs, the three closed geometries, both textured game versions and the four unchanged archive hashes. A100mm mechanical repair STL was reloaded at exactly100mm and remained closed with positive volume; a100mm game GLB reloaded at0.10000000149 metres with2048px PBR textures. The CPU suite passes26 tests, with additional independent cancellation, topology, material-chain, legacy-retry, startup-control and unit-format probes. Native MCP exposes14 tools; actual jobs were exercised through MCP and the browser.
+
+Durable evidence: `D:/LocalAI/HoardStorage/daedalus-development636/`, including processing-proof.json, export-proof.json, native MCP receipts and browser captures. Its isolated QA store retains24 jobs, including cancellations. The comparison viewer at http://127.0.0.1:63836 keeps these versions separate from the main user library. Source backup: https://github.com/Luissalet/DaedalusHoard; weights and private jobs are not published.
