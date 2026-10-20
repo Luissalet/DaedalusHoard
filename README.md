@@ -1,3 +1,7 @@
+> **Absorbed by [Vulcan's Hoard](https://github.com/Luissalet/VulcanHoard).**
+> This project's capabilities are maintained in the merged Hoard, with independent modules initially disabled.
+> The code and instructions below remain as historical reference; use the linked repository for the current installation.
+
 # Daedalus's Hoard
 
 Generación local de modelos 3D desde imágenes, con refinado, reparación para impresión y optimización para juegos opcionales.
